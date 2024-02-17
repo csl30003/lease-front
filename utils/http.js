@@ -28,9 +28,9 @@ export default (params) => {
                 if (res.data.code == 200) {
                     resolve(res.data);
                 } else {
-                    uni.clearStorageSync()
                     switch (res.data.code) {
                         case 401:
+                            uni.clearStorageSync()
                             uni.showModal({
                                 title: "提示",
                                 content: "请登录",

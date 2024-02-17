@@ -11,17 +11,20 @@ const _sfc_main = {
     const orderAmount = common_vendor.ref("");
     common_vendor.onShow(() => {
       loginResult.value = common_vendor.index.getStorageSync("loginResult");
-      console.log(loginResult.value.avatar);
       isAuthInfo.value = !!loginResult.value;
     });
+    const toAddressList = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/address/address"
+      });
+    };
     const toOrderListPage = (e) => {
       const sts = e.currentTarget.dataset.sts;
       common_vendor.index.navigateTo({
         url: "/pages/orderList/orderList?sts=" + sts
       });
     };
-    const collectionCount = common_vendor.ref(0);
-    const myCollectionHandle = () => {
+    const myCollection = () => {
       let url = "/pages/prod-classify/prod-classify?sts=5";
       common_vendor.index.navigateTo({
         url
@@ -93,19 +96,17 @@ const _sfc_main = {
         v: common_assets._imports_4,
         w: common_vendor.o(toOrderListPage),
         x: loginResult.value
-      }, loginResult.value ? {
-        y: common_vendor.t(collectionCount.value)
-      } : {}, {
-        z: common_vendor.o(myCollectionHandle),
-        A: loginResult.value
       }, loginResult.value ? {} : {}, {
-        B: common_vendor.o((...args) => _ctx.handleTips && _ctx.handleTips(...args)),
-        C: loginResult.value
+        y: common_vendor.o(myCollection),
+        z: loginResult.value
       }, loginResult.value ? {} : {}, {
-        D: common_vendor.o((...args) => _ctx.handleTips && _ctx.handleTips(...args)),
-        E: isAuthInfo.value
+        A: common_vendor.o((...args) => _ctx.handleTips && _ctx.handleTips(...args)),
+        B: loginResult.value
+      }, loginResult.value ? {} : {}, {
+        C: common_vendor.o(toAddressList),
+        D: isAuthInfo.value
       }, isAuthInfo.value ? {
-        F: common_vendor.o(logout)
+        E: common_vendor.o(logout)
       } : {});
     };
   }

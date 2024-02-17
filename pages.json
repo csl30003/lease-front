@@ -75,6 +75,18 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
+		},
+		{
+			"path": "pages/address/address",
+			"style": {
+				"navigationBarTitleText": "地址"
+			}
+		},
+		{
+			"path": "pages/address/editAddress",
+			"style": {
+				"navigationBarTitleText": "编辑地址"
+			}
 		}
 	],
 	"globalStyle": {

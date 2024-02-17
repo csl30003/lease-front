@@ -39,7 +39,6 @@ const _sfc_main = {
           name: principal.value,
           password: credentials.value
         });
-        console.log(res.data.token);
         common_vendor.index.setStorageSync("token", res.data.token);
         common_vendor.index.setStorageSync("loginResult", {
           name: res.data.name,

@@ -6,7 +6,9 @@
     "pages/user/user",
     "pages/product/category",
     "pages/login/login",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/address/address",
+    "pages/address/editAddress"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -45,6 +47,11 @@
         "text": "我的"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "导航"
+    }
   },
   "usingComponents": {}
 }

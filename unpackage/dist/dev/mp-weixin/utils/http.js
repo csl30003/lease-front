@@ -25,9 +25,9 @@ const http = (params) => {
         if (res.data.code == 200) {
           resolve(res.data);
         } else {
-          common_vendor.index.clearStorageSync();
           switch (res.data.code) {
             case 401:
+              common_vendor.index.clearStorageSync();
               common_vendor.index.showModal({
                 title: "提示",
                 content: "请登录",

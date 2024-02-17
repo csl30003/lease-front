@@ -106,7 +106,6 @@ const login = async () => {
       password: credentials.value
     })
     // setStorageSync
-    console.log(res.data.token)
     uni.setStorageSync('token', res.data.token)
     uni.setStorageSync('loginResult', {
       name: res.data.name,
