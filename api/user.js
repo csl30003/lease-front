@@ -20,7 +20,6 @@ export const registerAPI = (params) => {
             password: params.password
         }
     })
-
 }
 
 export const logoutAPI = () => {

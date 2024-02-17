@@ -36,3 +36,10 @@ export const updateAddressAPI = (id, data) => {
         data
     })
 }
+
+export const deleteAddressAPI = (id) => {
+    return http({
+        url: '/index/address/' + id,
+        method: 'delete',
+    })
+}

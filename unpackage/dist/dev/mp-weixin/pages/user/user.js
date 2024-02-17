@@ -30,6 +30,11 @@ const _sfc_main = {
         url
       });
     };
+    const toEditUser = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/user/editUser"
+      });
+    };
     const toLogin = () => {
       common_vendor.index.showModal({
         title: "提示",
@@ -66,47 +71,48 @@ const _sfc_main = {
         a: isAuthInfo.value
       }, isAuthInfo.value ? {
         b: loginResult.value.avatar ? loginResult.value.avatar : "/static/images/icon/head04.png",
-        c: common_vendor.t(loginResult.value.name ? loginResult.value.name : "用户昵称")
+        c: common_vendor.o(toEditUser),
+        d: common_vendor.t(loginResult.value.name ? loginResult.value.name : "用户昵称")
       } : {}, {
-        d: !isAuthInfo.value
+        e: !isAuthInfo.value
       }, !isAuthInfo.value ? {
-        e: common_assets._imports_0,
-        f: common_vendor.o(toLogin),
-        g: common_vendor.o(toLogin)
+        f: common_assets._imports_0,
+        g: common_vendor.o(toLogin),
+        h: common_vendor.o(toLogin)
       } : {}, {
-        h: common_vendor.o(toOrderListPage),
-        i: common_assets._imports_1,
-        j: orderAmount.value.unPay > 0
+        i: common_vendor.o(toOrderListPage),
+        j: common_assets._imports_1,
+        k: orderAmount.value.unPay > 0
       }, orderAmount.value.unPay > 0 ? {
-        k: common_vendor.t(orderAmount.value.unPay)
+        l: common_vendor.t(orderAmount.value.unPay)
       } : {}, {
-        l: common_vendor.o(toOrderListPage),
-        m: common_assets._imports_2,
-        n: orderAmount.value.payed > 0
+        m: common_vendor.o(toOrderListPage),
+        n: common_assets._imports_2,
+        o: orderAmount.value.payed > 0
       }, orderAmount.value.payed > 0 ? {
-        o: common_vendor.t(orderAmount.value.payed)
+        p: common_vendor.t(orderAmount.value.payed)
       } : {}, {
-        p: common_vendor.o(toOrderListPage),
-        q: common_assets._imports_3,
-        r: orderAmount.value.consignment > 0
+        q: common_vendor.o(toOrderListPage),
+        r: common_assets._imports_3,
+        s: orderAmount.value.consignment > 0
       }, orderAmount.value.consignment > 0 ? {
-        s: common_vendor.t(orderAmount.value.consignment)
+        t: common_vendor.t(orderAmount.value.consignment)
       } : {}, {
-        t: common_vendor.o(toOrderListPage),
-        v: common_assets._imports_4,
-        w: common_vendor.o(toOrderListPage),
-        x: loginResult.value
+        v: common_vendor.o(toOrderListPage),
+        w: common_assets._imports_4,
+        x: common_vendor.o(toOrderListPage),
+        y: loginResult.value
       }, loginResult.value ? {} : {}, {
-        y: common_vendor.o(myCollection),
-        z: loginResult.value
+        z: common_vendor.o(myCollection),
+        A: loginResult.value
       }, loginResult.value ? {} : {}, {
-        A: common_vendor.o((...args) => _ctx.handleTips && _ctx.handleTips(...args)),
-        B: loginResult.value
+        B: common_vendor.o((...args) => _ctx.handleTips && _ctx.handleTips(...args)),
+        C: loginResult.value
       }, loginResult.value ? {} : {}, {
-        C: common_vendor.o(toAddressList),
-        D: isAuthInfo.value
+        D: common_vendor.o(toAddressList),
+        E: isAuthInfo.value
       }, isAuthInfo.value ? {
-        E: common_vendor.o(logout)
+        F: common_vendor.o(logout)
       } : {});
     };
   }

@@ -133,23 +133,19 @@ const _sfc_main = {
     const onDetailInput = (e) => {
       detail.value = e.detail.value;
     };
-    const onDeleteAddr = () => {
+    const onDeleteAddr = async () => {
       common_vendor.index.showModal({
         title: "",
         content: "确定要删除此收货地址吗？",
         confirmColor: "#eb2444",
-        success(res) {
+        async success(res) {
           if (res.confirm) {
             const addrIdParam = addrId.value;
             common_vendor.index.showLoading();
-            http.request({
-              url: "/p/address/deleteAddr/" + addrIdParam,
-              method: "DELETE"
-            }).then(() => {
-              common_vendor.index.hideLoading();
-              common_vendor.index.navigateBack({
-                delta: 1
-              });
+            await api_address.deleteAddressAPI(addrIdParam);
+            common_vendor.index.hideLoading();
+            common_vendor.index.navigateBack({
+              delta: 1
             });
           }
         }

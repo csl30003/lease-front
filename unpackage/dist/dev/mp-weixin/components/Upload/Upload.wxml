@@ -1,0 +1,1 @@
+<view class="content data-v-727cfd90"><image class="data-v-727cfd90" style="height:150rpx;width:150rpx;box-shadow:2rpx 2rpx 6rpx #b9aeae" src="{{a}}" bindtap="{{b}}"></image></view>

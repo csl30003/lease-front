@@ -9,6 +9,7 @@ if (!Math) {
   "./pages/product/category.js";
   "./pages/login/login.js";
   "./pages/register/register.js";
+  "./pages/user/editUser.js";
   "./pages/address/address.js";
   "./pages/address/editAddress.js";
 }

@@ -26,6 +26,13 @@ const logoutAPI = () => {
     method: "post"
   });
 };
+const getUserInfoAPI = () => {
+  return utils_http.http({
+    url: "/index/getUserInfo",
+    method: "get"
+  });
+};
+exports.getUserInfoAPI = getUserInfoAPI;
 exports.loginAPI = loginAPI;
 exports.logoutAPI = logoutAPI;
 exports.registerAPI = registerAPI;

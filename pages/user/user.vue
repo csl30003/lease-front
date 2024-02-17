@@ -4,7 +4,7 @@
 		<view v-if="isAuthInfo" class="userinfo">
 			<view class="userinfo-con">
 				<view class="userinfo-avatar">
-					<image :src="loginResult.avatar ? loginResult.avatar : '/static/images/icon/head04.png'" />
+					<image :src="loginResult.avatar ? loginResult.avatar : '/static/images/icon/head04.png'" @tap="toEditUser" />
 				</view>
 				<view class="userinfo-name">
 					<view>{{ loginResult.name ? loginResult.name : "用户昵称" }}</view>
@@ -157,6 +157,16 @@ const myCollection = () => {
 	uni.navigateTo({
 		url
 	})
+}
+
+/**
+ * 跳转到编辑用户信息
+ */
+const toEditUser = () => {
+	uni.navigateTo({
+		url: '/pages/user/editUser'
+	})
+
 }
 
 /**

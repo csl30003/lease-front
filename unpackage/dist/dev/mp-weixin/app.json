@@ -7,6 +7,7 @@
     "pages/product/category",
     "pages/login/login",
     "pages/register/register",
+    "pages/user/editUser",
     "pages/address/address",
     "pages/address/editAddress"
   ],

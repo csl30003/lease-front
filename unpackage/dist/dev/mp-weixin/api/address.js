@@ -32,7 +32,14 @@ const updateAddressAPI = (id, data) => {
     data
   });
 };
+const deleteAddressAPI = (id) => {
+  return utils_http.http({
+    url: "/index/address/" + id,
+    method: "delete"
+  });
+};
 exports.addAddressAPI = addAddressAPI;
+exports.deleteAddressAPI = deleteAddressAPI;
 exports.getAddressAPI = getAddressAPI;
 exports.getAddressByIdAPI = getAddressByIdAPI;
 exports.setDefaultAddressAPI = setDefaultAddressAPI;

@@ -77,6 +77,12 @@
 			}
 		},
 		{
+			"path": "pages/user/editUser",
+			"style": {
+				"navigationBarTitleText": "编辑个人信息"
+			}
+		},
+		{
 			"path": "pages/address/address",
 			"style": {
 				"navigationBarTitleText": "地址"

@@ -26,49 +26,6 @@
                 <text>详细地址</text>
                 <input placeholder="如楼号/单元/门牌号" type="text" :value="detail" @input="onDetailInput">
             </view>
-
-
-
-            <!-- <view class="section" @tap="translate">
-                <text>所在地区</text>
-                <view class="pca">
-                    {{ province }} {{ city }} {{ area }}
-                </view>
-                <view class="animation-element-wrapper" :animation="animation"
-                    :style="'visibility:' + (show ? 'visible' : 'hidden')" @tap.stop="hiddenFloatView">
-                    <view class="animation-element" @tap.stop="nono">
-                        <text class="right-bt" @tap.stop="hiddenFloatView">
-                            确定
-                        </text>
-                        <view class="line" />
-                        <picker-view indicator-style="height: 50rpx;" :value="valArr" @change="bindChange" @tap.stop="nono"> -->
-            <!-- 省 -->
-            <!-- <picker-view-column>
-                                <view v-for="(item, indexs) in provArray" :key="indexs">
-                                    {{ item.areaName }}
-                                </view>
-                            </picker-view-column> -->
-            <!--地级市-->
-            <!-- <picker-view-column>
-                                <view v-for="(item, indexss) in cityArray" :key="indexss">
-                                    {{ item.areaName }}
-                                </view>
-                            </picker-view-column> -->
-            <!--区县-->
-            <!-- <picker-view-column>
-                                <view v-for="(item, indexsss) in areaArray" :key="indexsss">
-                                    {{ item.areaName }}
-                                </view>
-                            </picker-view-column>
-                        </picker-view>
-                    </view>
-                </view> -->
-
-            <!-- <view class="arrow">
-                    <image src="@/static/images/icon/more.png" />
-                </view>
-            </view> -->
-
         </view>
         <!-- end input列表 -->
         <!-- 功能按钮 -->
@@ -88,7 +45,7 @@
 <script setup>
 import { ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
-import { getAddressByIdAPI, addAddressAPI, updateAddressAPI } from "@/api/address"
+import { getAddressByIdAPI, addAddressAPI, updateAddressAPI, deleteAddressAPI } from "@/api/address"
 
 const addrId = ref(0)
 const name = ref('')
@@ -215,30 +172,6 @@ const onSaveAddr = async () => {
     uni.navigateBack({
         delta: 1
     })
-
-    // http.request({
-    //     url,
-    //     method,
-    //     data: {
-    //         receiver: receiver.value,
-    //         mobile: mobile.value,
-    //         addr: addr.value,
-    //         province: province.value,
-    //         provinceId: provinceId.value,
-    //         city: city.value,
-    //         cityId: cityId.value,
-    //         areaId: areaId.value,
-    //         area: area.value,
-    //         userType: 0,
-    //         addrId: addrId.value
-    //     }
-    // })
-    //     .then(() => {
-    //         uni.hideLoading()
-    //         uni.navigateBack({
-    //             delta: 1
-    //         })
-    //     })
 }
 
 const onNameInput = (e) => {
@@ -263,26 +196,23 @@ const onDetailInput = (e) => {
 /**
  * 删除配送地址
  */
-const onDeleteAddr = () => {
+const onDeleteAddr = async () => {
     uni.showModal({
         title: '',
         content: '确定要删除此收货地址吗？',
         confirmColor: '#eb2444',
 
-        success(res) {
+        async success(res) {
             if (res.confirm) {
                 const addrIdParam = addrId.value
                 uni.showLoading()
-                http.request({
-                    url: '/p/address/deleteAddr/' + addrIdParam,
-                    method: 'DELETE'
+
+                await deleteAddressAPI(addrIdParam)
+
+                uni.hideLoading()
+                uni.navigateBack({
+                    delta: 1
                 })
-                    .then(() => {
-                        uni.hideLoading()
-                        uni.navigateBack({
-                            delta: 1
-                        })
-                    })
             }
         }
     })
