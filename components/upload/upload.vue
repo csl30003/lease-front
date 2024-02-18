@@ -11,47 +11,54 @@ import { ref, onMounted, defineProps } from 'vue';
 const props = defineProps(['count']);
 const tempFilePaths = ref('/static/images/icon/plus-sign.png');
 
+const temp = ref(false);
+
 function chooseImage() {
 	uni.chooseImage({
 		count: props.count,
 		sourceType: ['album'],
 		success: function (res) {
 			tempFilePaths.value = res.tempFilePaths[0];
+			temp.value = true;
 		}
 	});
 }
 
 function UploadImg() {
 	return new Promise(function (resolve, reject) {
-		let header = {
-			'Content-Type': 'application/json'
-		}
-		// 获取本地token
-		if (uni.getStorageSync("token")) {
-			header['Cookie'] = 'token=' + uni.getStorageSync("token");
-		}
+		if (!temp.value) {
+			// 没有选择过图片就跳过，先不处理
+		} else {
+			let header = {
+				'Content-Type': 'application/json'
+			}
+			// 获取本地token
+			if (uni.getStorageSync("token")) {
+				header['Cookie'] = 'token=' + uni.getStorageSync("token");
+			}
 
-		uni.uploadFile({
-			url: `http://localhost:8080/index/upload`,//地址
-			method: 'POST',
-			filePath: tempFilePaths.value,
-			name: 'avatar',
-			header: header,
-			formData: {}
-		})
-			.then((res) => {
-				const path = JSON.parse(res.data).data;
-
-				// 更新loginResult
-				let loginResult = uni.getStorageSync('loginResult');
-				loginResult.avatar = path;
-				uni.setStorageSync('loginResult', loginResult);
-
-				resolve(path);
+			uni.uploadFile({
+				url: `http://localhost:8080/index/upload`,//地址
+				method: 'POST',
+				filePath: tempFilePaths.value,
+				name: 'avatar',
+				header: header,
+				formData: {}
 			})
-			.catch((err) => {
-				reject(err);
-			});
+				.then((res) => {
+					const path = JSON.parse(res.data).data;
+
+					// loginResult
+					let loginResult = uni.getStorageSync('loginResult');
+					loginResult.avatar = path;
+					uni.setStorageSync('loginResult', loginResult);
+
+					resolve(path);
+				})
+				.catch((err) => {
+					reject(err);
+				});
+		}
 	});
 }
 

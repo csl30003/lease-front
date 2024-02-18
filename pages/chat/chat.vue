@@ -1,200 +1,322 @@
+<!-- <template>
+	<view class="">
+		<view class="">
+			<view class="">
+				<view class="">
+					<view class="">
+						<view class="" @tap="uploadImages">图片上传</view>
+						<view class="">{{ files.length }}/5</view>
+					</view>
+				</view>
+				<view class="">
+					<view class="" id="">
+						<view v-for="(item, index) in files" :key="index" class=""
+							@tap="previewImage(item)">
+							<image class="" :src="item" mode="aspectFill"></image>
+						</view>
+						<view v-if="gallery" v-for="(item, index) in files" :key="index" class=""
+							@tap="close">
+							<view class="">1/{{ files.length }}</view>
+							<view class="">
+								<image mode="aspectFit" class="" :src="item"></image>
+							</view>
+							<view class="">
+								<view class="">
+									<i class="" @tap="deleteImg(index)">删除</i>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="" v-if="showUpload">
+						<view class="" @tap="chooseImage">添加</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template> -->
+<!-- <template>
+	<view class="container">
+		<view class="header">
+			<view class="upload-section">
+				<view class="upload-btn" @tap="uploadImages">图片上传</view>
+				<view class="file-count">{{ files.length }}/5</view>
+			</view>
+		</view>
+		<view class="image-section">
+			<view class="image-gallery" id="image-gallery">
+				<view v-for="(item, index) in files" :key="index" class="image-item"
+					@tap="previewImage(item)">
+					<image class="preview-image" :src="item" mode="aspectFill"></image>
+				</view>
+				<view v-if="gallery" v-for="(item, index) in files" :key="index" class="image-popup"
+					@tap="close">
+					<view class="image-index">1/{{ files.length }}</view>
+					<view class="image-wrapper">
+						<image mode="aspectFit" class="popup-image" :src="item"></image>
+					</view>
+					<view class="delete-btn">
+						<view class="delete-icon" @tap="deleteImg(index)">删除</view>
+					</view>
+				</view>
+			</view>
+			<view class="upload-btn-section" v-if="showUpload">
+				<view class="add-btn" @tap="chooseImage">添加</view>
+			</view>
+		</view>
+	</view>
+</template> -->
 <template>
 	<view class="container">
 		<view class="header">
-			<button class="publish-button" @click="publish">发布</button>
-		</view>
-
-		<view class="content">
-			<textarea class="details-input" v-model="details" placeholder="请输入商品详情"></textarea>
-			<view class="image-container">
-				<view v-for="(image, index) in images" :key="index" class="image-item">
-					<image :src="image" mode="aspectFill" class="image"></image>
-					<button class="delete-button" @click="deleteImage(index)">删除</button>
-				</view>
-				<button class="add-image-button" @click="addImage" v-if="images.length < 9">添加图片</button>
+			<view class="upload-section">
+				<view class="upload-btn" @tap="uploadImages">图片上传</view>
+				<view class="file-count">{{ files.length }}/5</view>
 			</view>
-
-
-			<picker class="category-picker" mode="selector" :range="categories" @change="changeCategory">
-				<view class="picker-container">
-					<text>选择分类：</text>
-					<text class="selected-category">{{ selectedCategory }}</text>
+		</view>
+		<view class="image-section">
+			<view class="image-gallery" id="image-gallery">
+				<view v-for="(item, index) in files" :key="index" class="image-item"
+					@tap="previewImage(index)">
+					<image class="preview-image" :src="item" mode="aspectFill"></image>
 				</view>
-			</picker>
-			<input class="price-input" type="number" v-model="price" placeholder="请输入价格">
-			<picker class="shipping-picker" mode="selector" :range="shippingOptions" @change="changeShipping">
-				<view class="picker-container">
-					<text>发货方式：</text>
-					<text class="selected-shipping">{{ selectedShipping }}</text>
+				<view v-if="gallery !== -1" class="image-popup" @tap="close">
+					<view class="image-index">{{ gallery + 1 }}/{{ files.length }}</view>
+					<view class="image-wrapper">
+						<image mode="aspectFit" class="popup-image" :src="files[gallery]"></image>
+					</view>
+					<view class="delete-btn">
+						<view class="delete-icon" @tap="deleteImg(gallery)">删除</view>
+					</view>
 				</view>
-			</picker>
-			<input class="freight-input" type="number" v-model="freight" placeholder="请输入运费"
-				v-if="selectedShipping === '快递'">
-
-			<!-- 按钮，前往分类页面 -->
-			<view @tap="toSelectCategory">
-				<button>
-					选择类别
-				</button>
+			</view>
+			<view class="upload-btn-section" v-if="showUpload">
+				<view class="add-btn" @tap="chooseImage">添加</view>
 			</view>
 		</view>
 	</view>
 </template>
   
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue';
 
-const details = ref('')
-const images = ref([])
-const categories = ['分类1', '分类2', '分类3'] // 替换为实际的分类数据
-const selectedCategory = ref('')
-const price = ref('')
-const shippingOptions = ['快递', '自取'] // 替换为实际的发货方式数据
-const selectedShipping = ref('')
-const freight = ref('')
+const showUpload = ref(true);
+const files = ref([]);
+const gallery = ref(-1);
 
-const publish = () => {
-	// 在这里执行发布商品的逻辑，将表单数据提交到后端
-};
-
-const addImage = () => {
-	// 添加图片的逻辑
-	// 使用uniapp的API选择图片并将图片添加到images数组中
-};
-
-const deleteImage = (index) => {
-	// 删除图片的逻辑
-	// 从images数组中移除指定索引的图片
-};
-
-const changeCategory = (event) => {
-	selectedCategory.value = categories[event.detail.value];
-};
-
-const changeShipping = (event) => {
-	selectedShipping.value = shippingOptions[event.detail.value];
-	// 当选择自取时，将运费字段重置为空
-	if (selectedShipping.value === '自取') {
-		freight.value = '';
+watch(files, (newFiles) => {
+	if (newFiles.length > 4) {
+		showUpload.value = false;
+	} else {
+		showUpload.value = true;
 	}
+});
+
+const uploadImages = () => {
+	let header = {
+		'Content-Type': 'application/json'
+	}
+	// 获取本地token
+	if (uni.getStorageSync("token")) {
+		header['Cookie'] = 'token=' + uni.getStorageSync("token");
+	}
+	const tempFilePaths = files.value;
+
+	for (let i = 0; i < tempFilePaths.length; i++) {
+		const filePath = tempFilePaths[i];
+		uni.uploadFile({
+			url: 'http://localhost:8080/index/product/image',
+			filePath: filePath,
+			name: 'productImage',
+			method: 'POST',
+			header: header,
+			formData: {},
+			success: (res) => {
+				const resTemp = JSON.parse(res.data);
+				console.log(resTemp.code);
+				// 根据返回的状态码做出对应的操作
+				if (resTemp.code == 200) {
+					console.log("一个上传成功");
+				} else {
+					switch (resTemp.code) {
+						case 401:
+							uni.clearStorageSync()
+							uni.showModal({
+								title: "提示",
+								content: "请登录",
+								showCancel: false,
+								success(res) {
+									setTimeout(() => {
+										uni.navigateTo({
+											url: "/pages/login/login",
+										})
+									}, 1000);
+								},
+							});
+							break;
+						case 404:
+							uni.showToast({
+								title: '请求地址不存在...',
+								icon: "none",
+								duration: 1000,
+							})
+							break;
+						default:
+							uni.showModal({
+								title: '请重试...',
+								showCancel: false,
+							})
+							break;
+					}
+				}
+			}
+		});
+	}
+}
+
+const chooseImage = () => {
+	uni.chooseImage({
+		sizeType: ['original', 'compressed'],
+		sourceType: ['album', 'camera'],
+		success: (res) => {
+			files.value = [...files.value, res.tempFilePaths[0]];
+		}
+	});
 };
 
-const toSelectCategory = () => {
-	uni.navigateTo({
-		url: "/pages/category/selectCategory",
-	})
-}
+const previewImage = (index) => {
+	gallery.value = index;
+};
+
+const deleteImg = (index) => {
+	files.value.splice(index, 1);
+	if (gallery.value === index) {
+		gallery.value = -1;
+	}
+
+	console.log(files.value);
+};
+
+const close = () => {
+	gallery.value = -1;
+};
+
+
 </script>
   
-<style>
+<style lang="scss" scoped>
 .container {
-	flex: 1;
-	padding: 20px;
+  background-color: #fff;
+  padding: 20px;
 }
 
 .header {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.publish-button {
-	background-color: #007aff;
-	color: #ffffff;
-	padding: 10px 20px;
-	border-radius: 4px;
+.upload-section {
+  display: flex;
+  align-items: center;
 }
 
-.content {
-	margin-top: 20px;
+.upload-btn {
+  background-color: #007aff;
+  color: #fff;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
-.details-input {
-	width: 94%;
-	height: 150px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	margin-bottom: 20px;
+.file-count {
+  color: #007aff;
+  font-size: 12px;
 }
 
-.image-container {
-	display: flex;
-	flex-wrap: wrap;
-	margin-bottom: 20px;
+.image-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .image-item {
-	position: relative;
-	width: calc(33.33% - 10px);
-	margin-right: 10px;
-	margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  position: relative;
 }
 
-.image {
-	width: 100%;
-	height: 100px;
-	object-fit: cover;
+.preview-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
 }
 
-.delete-button {
-	position: absolute;
-	top: 4px;
-	right: 4px;
-	background-color: #ff3b30;
-	color: #ffffff;
-	padding: 4px 8px;
-	border-radius: 4px;
+.image-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.add-image-button {
-	width: 100%;
-	background-color: #007aff;
-	color: #ffffff;
-	padding: 10px;
+.image-index {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 12px;
 }
 
-.category-picker {
-	width: 100%;
-	height: 50px;
-	margin-bottom: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+.image-wrapper {
+  width: 80%;
+  height: 80%;
 }
 
-.picker-container {
-	display: flex;
-	align-items: center;
+.popup-image {
+  width: 100%;
+  height: 100%;
 }
 
-.selected-category {
-	margin-left: 5px;
+.delete-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
-.price-input {
-	width: 94%;
-	margin-bottom: 10px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+.delete-icon {
+  background-color: #007aff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
 }
 
-.shipping-picker {
-	width: 100%;
-	height: 50px;
-	margin-bottom: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+.upload-btn-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.selected-shipping {
-	margin-left: 5px;
-}
-
-.freight-input {
-	width: 94%;
-	margin-bottom: 10px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+.add-btn {
+  background-color: #007aff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
 }
 </style>
