@@ -47,13 +47,14 @@ export default (params) => {
                         case 404:
                             uni.showToast({
                                 title: '请求地址不存在...',
-                                duration: 2000,
+                                icon: "none",
+                                duration: 1000,
                             })
                             break;
                         default:
-                            uni.showToast({
+                            uni.showModal({
                                 title: '请重试...',
-                                duration: 2000,
+                                showCancel: false,
                             })
                             break;
                     }

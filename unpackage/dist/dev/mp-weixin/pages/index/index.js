@@ -1,19 +1,19 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
-  data() {
-    return {
-      title: "Hello"
+  __name: "index",
+  setup(__props) {
+    const toCategory = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/category/category"
+      });
     };
-  },
-  onLoad() {
-  },
-  methods: {}
+    return (_ctx, _cache) => {
+      return {
+        a: common_vendor.o(toCategory)
+      };
+    };
+  }
 };
-function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {
-    a: common_vendor.t($data.title)
-  };
-}
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/HBuilderProjects/lease/pages/index/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/HBuilderProjects/lease/pages/index/index.vue"]]);
 wx.createPage(MiniProgramPage);

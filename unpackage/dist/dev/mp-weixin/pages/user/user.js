@@ -18,16 +18,9 @@ const _sfc_main = {
         url: "/pages/address/address"
       });
     };
-    const toOrderListPage = (e) => {
-      const sts = e.currentTarget.dataset.sts;
+    const toEditUserAvatar = () => {
       common_vendor.index.navigateTo({
-        url: "/pages/orderList/orderList?sts=" + sts
-      });
-    };
-    const myCollection = () => {
-      let url = "/pages/prod-classify/prod-classify?sts=5";
-      common_vendor.index.navigateTo({
-        url
+        url: "/pages/user/editUserAvatar"
       });
     };
     const toEditUser = () => {
@@ -71,48 +64,49 @@ const _sfc_main = {
         a: isAuthInfo.value
       }, isAuthInfo.value ? {
         b: loginResult.value.avatar ? loginResult.value.avatar : "/static/images/icon/head04.png",
-        c: common_vendor.o(toEditUser),
-        d: common_vendor.t(loginResult.value.name ? loginResult.value.name : "用户昵称")
+        c: common_vendor.o(toEditUserAvatar),
+        d: common_vendor.t(loginResult.value.name ? loginResult.value.name : "用户昵称"),
+        e: common_vendor.o(toEditUser)
       } : {}, {
-        e: !isAuthInfo.value
+        f: !isAuthInfo.value
       }, !isAuthInfo.value ? {
-        f: common_assets._imports_0,
-        g: common_vendor.o(toLogin),
-        h: common_vendor.o(toLogin)
+        g: common_assets._imports_0,
+        h: common_vendor.o(toLogin),
+        i: common_vendor.o(toLogin)
       } : {}, {
-        i: common_vendor.o(toOrderListPage),
-        j: common_assets._imports_1,
-        k: orderAmount.value.unPay > 0
+        j: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        k: common_assets._imports_1,
+        l: orderAmount.value.unPay > 0
       }, orderAmount.value.unPay > 0 ? {
-        l: common_vendor.t(orderAmount.value.unPay)
+        m: common_vendor.t(orderAmount.value.unPay)
       } : {}, {
-        m: common_vendor.o(toOrderListPage),
-        n: common_assets._imports_2,
-        o: orderAmount.value.payed > 0
+        n: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        o: common_assets._imports_2,
+        p: orderAmount.value.payed > 0
       }, orderAmount.value.payed > 0 ? {
-        p: common_vendor.t(orderAmount.value.payed)
+        q: common_vendor.t(orderAmount.value.payed)
       } : {}, {
-        q: common_vendor.o(toOrderListPage),
-        r: common_assets._imports_3,
-        s: orderAmount.value.consignment > 0
+        r: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        s: common_assets._imports_3,
+        t: orderAmount.value.consignment > 0
       }, orderAmount.value.consignment > 0 ? {
-        t: common_vendor.t(orderAmount.value.consignment)
+        v: common_vendor.t(orderAmount.value.consignment)
       } : {}, {
-        v: common_vendor.o(toOrderListPage),
-        w: common_assets._imports_4,
-        x: common_vendor.o(toOrderListPage),
-        y: loginResult.value
+        w: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        x: common_assets._imports_4,
+        y: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        z: loginResult.value
       }, loginResult.value ? {} : {}, {
-        z: common_vendor.o(myCollection),
-        A: loginResult.value
+        A: common_vendor.o((...args) => _ctx.myCollection && _ctx.myCollection(...args)),
+        B: loginResult.value
       }, loginResult.value ? {} : {}, {
-        B: common_vendor.o((...args) => _ctx.handleTips && _ctx.handleTips(...args)),
-        C: loginResult.value
+        C: common_vendor.o((...args) => _ctx.handleTips && _ctx.handleTips(...args)),
+        D: loginResult.value
       }, loginResult.value ? {} : {}, {
-        D: common_vendor.o(toAddressList),
-        E: isAuthInfo.value
+        E: common_vendor.o(toAddressList),
+        F: isAuthInfo.value
       }, isAuthInfo.value ? {
-        F: common_vendor.o(logout)
+        G: common_vendor.o(logout)
       } : {});
     };
   }

@@ -32,7 +32,22 @@ const getUserInfoAPI = () => {
     method: "get"
   });
 };
+const updateUserInfoAPI = (params) => {
+  return utils_http.http({
+    url: "/index/updateUser",
+    method: "put",
+    data: {
+      name: params.name,
+      phone: params.phone,
+      country: params.country,
+      province: params.province,
+      city: params.city,
+      district: params.district
+    }
+  });
+};
 exports.getUserInfoAPI = getUserInfoAPI;
 exports.loginAPI = loginAPI;
 exports.logoutAPI = logoutAPI;
 exports.registerAPI = registerAPI;
+exports.updateUserInfoAPI = updateUserInfoAPI;

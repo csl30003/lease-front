@@ -33,6 +33,9 @@ const _sfc_main = {
           formData: {}
         }).then((res) => {
           const path = JSON.parse(res.data).data;
+          let loginResult = common_vendor.index.getStorageSync("loginResult");
+          loginResult.avatar = path;
+          common_vendor.index.setStorageSync("loginResult", loginResult);
           resolve(path);
         }).catch((err) => {
           reject(err);

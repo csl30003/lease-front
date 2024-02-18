@@ -43,7 +43,7 @@
 		{
 			"path": "pages/release/release",
 			"style": {
-				"navigationBarTitleText": "发布"
+				"navigationBarTitleText": "请选择商品类别"
 			}
 		},
 		{
@@ -83,6 +83,12 @@
 			}
 		},
 		{
+			"path": "pages/user/editUserAvatar",
+			"style": {
+				"navigationBarTitleText": "编辑头像"
+			}
+		},
+		{
 			"path": "pages/address/address",
 			"style": {
 				"navigationBarTitleText": "地址"
@@ -92,6 +98,24 @@
 			"path": "pages/address/editAddress",
 			"style": {
 				"navigationBarTitleText": "编辑地址"
+			}
+		},
+		{
+			"path": "pages/category/category",
+			"style": {
+				"navigationBarTitleText": "分类"
+			}
+		},
+		{
+			"path": "pages/release/selectAddress",
+			"style": {
+				"navigationBarTitleText": "选择地址"
+			}
+		},
+		{
+			"path": "pages/release/fillInformation",
+			"style": {
+				"navigationBarTitleText": "填写信息"
 			}
 		}
 	],

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "编辑头像",
+  "usingComponents": {
+    "upload": "../../components/Upload/Upload"
+  }
+}

@@ -8,8 +8,12 @@
     "pages/login/login",
     "pages/register/register",
     "pages/user/editUser",
+    "pages/user/editUserAvatar",
     "pages/address/address",
-    "pages/address/editAddress"
+    "pages/address/editAddress",
+    "pages/category/category",
+    "pages/release/selectAddress",
+    "pages/release/fillInformation"
   ],
   "window": {
     "navigationBarTextStyle": "black",

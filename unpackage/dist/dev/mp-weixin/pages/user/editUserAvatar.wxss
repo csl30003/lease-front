@@ -1,3 +1,17 @@
+.submit-button.data-v-3f460e16 {
+  width: 80%;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.submit-button.data-v-3f460e16:hover {
+  background-color: #0056b3;
+}
+
 /**
  * 这里是uni-app内置的常用样式变量
  *
@@ -23,16 +37,3 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content.data-v-727cfd90 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-}
-.image.data-v-727cfd90 {
-  height: 150px;
-  width: 150px;
-  box-shadow: 2px 2px 6px #b9aeae;
-  border-radius: 50%;
-  cursor: pointer;
-}

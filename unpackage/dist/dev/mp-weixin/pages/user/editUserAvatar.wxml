@@ -1,0 +1,1 @@
+<upload wx:if="{{b}}" class="r data-v-3f460e16" u-r="upLoad" u-i="3f460e16-0" bind:__l="__l" u-p="{{b}}"/><button class="submit-button data-v-3f460e16" bindtap="{{c}}">提交</button>

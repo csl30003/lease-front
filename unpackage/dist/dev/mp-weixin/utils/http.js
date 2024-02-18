@@ -44,13 +44,14 @@ const http = (params) => {
             case 404:
               common_vendor.index.showToast({
                 title: "请求地址不存在...",
-                duration: 2e3
+                icon: "none",
+                duration: 1e3
               });
               break;
             default:
-              common_vendor.index.showToast({
+              common_vendor.index.showModal({
                 title: "请重试...",
-                duration: 2e3
+                showCancel: false
               });
               break;
           }

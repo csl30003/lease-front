@@ -1,186 +1,94 @@
 <template>
 	<view class="container">
-		<view class="header">
-			<button class="publish-button" @click="publish">发布</button>
-		</view>
+		<!-- 滚动内容区 -->
+		<view class="main">
+			<!-- 左侧菜单start -->
+			<scroll-view scroll-y="true" class="leftmenu">
+				<block v-for="(item, index) in categoryList" :key="index">
+					<view :class="'menu-item ' + (selIndex == index ? 'active' : '') + ' '" :data-index="index"
+						:data-id="item.id" @tap="onMenuTab">
+						{{ item.name }}
+					</view>
+				</block>
+				<view v-if="!categoryList || !categoryList.length" class="ca-empty">
+					{{ categoryList && categoryList.length ? '该分类下暂无商品' : '暂无商品' }}
+				</view>
+			</scroll-view>
+			<!-- 左侧菜单end -->
 
-		<view class="content">
-			<textarea class="details-input" v-model="details" placeholder="请输入商品详情"></textarea>
-			<view class="image-container">
-				<view v-for="(image, index) in images" :key="index" class="image-item">
-					<image :src="image" mode="aspectFill" class="image"></image>
-					<button class="delete-button" @click="deleteImage(index)">删除</button>
+			<!-- 右侧内容start -->
+			<scroll-view scroll-y="true" class="rightcontent">
+				<!-- 子分类 -->
+				<view v-if="subCategoryList.length" class="th-cate-con">
+					<block v-for="(thCateItem, index) in subCategoryList" :key="index">
+						<view class="sub-category">
+							<view class="sub-category-item" :data-categoryid="thCateItem.id"
+								:data-parentid="thCateItem.parent_id" @tap="toSelect">
+								<text>{{ thCateItem.name }}</text>
+							</view>
+						</view>
+					</block>
 				</view>
-				<button class="add-image-button" @click="addImage" v-if="images.length < 9">添加图片</button>
-			</view>
-
-			
-			<picker class="category-picker" mode="selector" :range="categories" @change="changeCategory">
-				<view class="picker-container">
-					<text>选择分类：</text>
-					<text class="selected-category">{{ selectedCategory }}</text>
+				<view v-else class="cont-item empty">
+					该分类下暂无子分类~
 				</view>
-			</picker>
-			<input class="price-input" type="number" v-model="price" placeholder="请输入价格">
-			<picker class="shipping-picker" mode="selector" :range="shippingOptions" @change="changeShipping">
-				<view class="picker-container">
-					<text>发货方式：</text>
-					<text class="selected-shipping">{{ selectedShipping }}</text>
-				</view>
-			</picker>
-			<input class="freight-input" type="number" v-model="freight" placeholder="请输入运费" v-if="selectedShipping === '快递'">
+			</scroll-view>
+			<!-- 右侧内容end -->
 		</view>
 	</view>
 </template>
   
 <script setup>
 import { ref } from 'vue'
+import { onLoad } from '@dcloudio/uni-app'
+import { getCategoryAPI } from "@/api/category"
 
-const details = ref('')
-const images = ref([])
-const categories = ['分类1', '分类2', '分类3'] // 替换为实际的分类数据
-const selectedCategory = ref('')
-const price = ref('')
-const shippingOptions = ['快递', '自取'] // 替换为实际的发货方式数据
-const selectedShipping = ref('')
-const freight = ref('')
+const categoryList = ref([])
+const subCategoryList = ref([])
+const parentId = ref('')
 
-const publish = () => {
-  // 在这里执行发布商品的逻辑，将表单数据提交到后端
-};
+/**
+ * 生命周期函数--监听页面加载
+ */
+onLoad(async () => {
+	// 加载分类列表
+	let res = await getCategoryAPI(0)
+	categoryList.value = res.data
+	await getProdList(categoryList.value[0].id)
+	parentId.value = categoryList.value[0].id
+})
 
-const addImage = () => {
-  // 添加图片的逻辑
-  // 使用uniapp的API选择图片并将图片添加到images数组中
-};
+const selIndex = ref(0)
+/**
+ * 分类点击事件
+ */
+const onMenuTab = async (e) => {
+	const index = e.currentTarget.dataset.index
+	await getProdList(categoryList.value[index].id)
+	parentId.value = categoryList.value[index].id
+	selIndex.value = index
+}
 
-const deleteImage = (index) => {
-  // 删除图片的逻辑
-  // 从images数组中移除指定索引的图片
-};
+const getProdList = async (categoryId) => {
+	// 加载分类列表
+	let res = await getCategoryAPI(categoryId)
+	subCategoryList.value = res.data
+}
 
-const changeCategory = (event) => {
-  selectedCategory.value = categories[event.detail.value];
-};
+/**
+ * 选择
+ */
+const toSelect = (e) => {
+	// 获取分类id
+	const categoryid = e.currentTarget.dataset.categoryid
+	uni.navigateTo({
+		url: '/pages/release/selectAddress?categoryId=' + categoryid
+	})
+}
 
-const changeShipping = (event) => {
-  selectedShipping.value = shippingOptions[event.detail.value];
-  // 当选择自取时，将运费字段重置为空
-  if (selectedShipping.value === '自取') {
-    freight.value = '';
-  }
-};
 </script>
   
-<style>
-.container {
-	flex: 1;
-	padding: 20px;
-}
-
-.header {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.publish-button {
-	background-color: #007aff;
-	color: #ffffff;
-	padding: 10px 20px;
-	border-radius: 4px;
-}
-
-.content {
-	margin-top: 20px;
-}
-
-.details-input {
-	width: 94%;
-	height: 150px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	margin-bottom: 20px;
-}
-
-.image-container {
-	display: flex;
-	flex-wrap: wrap;
-	margin-bottom: 20px;
-}
-
-.image-item {
-	position: relative;
-	width: calc(33.33% - 10px);
-	margin-right: 10px;
-	margin-bottom: 10px;
-}
-
-.image {
-	width: 100%;
-	height: 100px;
-	object-fit: cover;
-}
-
-.delete-button {
-	position: absolute;
-	top: 4px;
-	right: 4px;
-	background-color: #ff3b30;
-	color: #ffffff;
-	padding: 4px 8px;
-	border-radius: 4px;
-}
-
-.add-image-button {
-	width: 100%;
-	background-color: #007aff;
-	color: #ffffff;
-	padding: 10px;
-}
-
-.category-picker {
-  width: 100%;
-  height: 50px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.picker-container {
-  display: flex;
-  align-items: center;
-}
-
-.selected-category {
-  margin-left: 5px;
-}
-
-.price-input {
-  width: 94%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.shipping-picker {
-  width: 100%;
-  height: 50px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.selected-shipping {
-  margin-left: 5px;
-}
-
-.freight-input {
-  width: 94%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+<style scoped lang="scss">
+@import "./release.scss";
 </style>
+  

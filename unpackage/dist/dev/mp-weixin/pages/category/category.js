@@ -3,7 +3,7 @@ const common_vendor = require("../../common/vendor.js");
 const api_category = require("../../api/category.js");
 require("../../utils/http.js");
 const _sfc_main = {
-  __name: "release",
+  __name: "category",
   setup(__props) {
     const categoryList = common_vendor.ref([]);
     const subCategoryList = common_vendor.ref([]);
@@ -25,10 +25,10 @@ const _sfc_main = {
       let res = await api_category.getCategoryAPI(categoryId);
       subCategoryList.value = res.data;
     };
-    const toSelect = (e) => {
-      const categoryid = e.currentTarget.dataset.categoryid;
+    const toCatePage = (e) => {
+      const { categoryid } = e.currentTarget.dataset;
       common_vendor.index.navigateTo({
-        url: "/pages/release/selectAddress?categoryId=" + categoryid
+        url: `/pages/sub-category/sub-category?parentId=${parentId.value}&categoryId=${categoryid}`
       });
     };
     return (_ctx, _cache) => {
@@ -54,7 +54,7 @@ const _sfc_main = {
             a: common_vendor.t(thCateItem.name),
             b: thCateItem.id,
             c: thCateItem.parent_id,
-            d: common_vendor.o(toSelect, index),
+            d: common_vendor.o(toCatePage, index),
             e: index
           };
         })
@@ -62,5 +62,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-5bdbf39a"], ["__file", "D:/HBuilderProjects/lease/pages/release/release.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-8145b772"], ["__file", "D:/HBuilderProjects/lease/pages/category/category.vue"]]);
 wx.createPage(MiniProgramPage);

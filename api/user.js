@@ -35,3 +35,18 @@ export const getUserInfoAPI = () => {
         method: 'get',
     })
 }
+
+export const updateUserInfoAPI = (params) => {
+    return http({
+        url: '/index/updateUser',
+        method: 'put',
+        data: {
+            name: params.name,
+            phone: params.phone,
+            country: params.country,
+            province: params.province,
+            city: params.city,
+            district: params.district
+        }
+    })
+}

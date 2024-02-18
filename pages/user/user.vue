@@ -4,9 +4,9 @@
 		<view v-if="isAuthInfo" class="userinfo">
 			<view class="userinfo-con">
 				<view class="userinfo-avatar">
-					<image :src="loginResult.avatar ? loginResult.avatar : '/static/images/icon/head04.png'" @tap="toEditUser" />
+					<image :src="loginResult.avatar ? loginResult.avatar : '/static/images/icon/head04.png'" @tap="toEditUserAvatar"/>
 				</view>
-				<view class="userinfo-name">
+				<view class="userinfo-name" @tap="toEditUser">
 					<view>{{ loginResult.name ? loginResult.name : "用户昵称" }}</view>
 				</view>
 			</view>
@@ -137,25 +137,34 @@ const toAddressList = () => {
 	})
 }
 
-const toOrderListPage = (e) => {
-	const sts = e.currentTarget.dataset.sts
-	uni.navigateTo({
-		url: '/pages/orderList/orderList?sts=' + sts
-	})
-}
+// const toOrderListPage = (e) => {
+// 	const sts = e.currentTarget.dataset.sts
+// 	uni.navigateTo({
+// 		url: '/pages/orderList/orderList?sts=' + sts
+// 	})
+// }
+
+// /**
+//  * 我的收藏跳转
+//  */
+// const myCollection = () => {
+// 	let url = '/pages/prod-classify/prod-classify?sts=5'
+// 	const id = 0
+// 	const title = '我的收藏商品'
+// 	if (id) {
+// 		url += '&tagid=' + id + '&title=' + title
+// 	}
+// 	uni.navigateTo({
+// 		url
+// 	})
+// }
 
 /**
- * 我的收藏跳转
+ * 跳转到编辑用户头像
  */
-const myCollection = () => {
-	let url = '/pages/prod-classify/prod-classify?sts=5'
-	const id = 0
-	const title = '我的收藏商品'
-	if (id) {
-		url += '&tagid=' + id + '&title=' + title
-	}
+const toEditUserAvatar = () => {
 	uni.navigateTo({
-		url
+		url: '/pages/user/editUserAvatar'
 	})
 }
 
@@ -166,7 +175,6 @@ const toEditUser = () => {
 	uni.navigateTo({
 		url: '/pages/user/editUser'
 	})
-
 }
 
 /**

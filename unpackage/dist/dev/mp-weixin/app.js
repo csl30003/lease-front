@@ -10,8 +10,12 @@ if (!Math) {
   "./pages/login/login.js";
   "./pages/register/register.js";
   "./pages/user/editUser.js";
+  "./pages/user/editUserAvatar.js";
   "./pages/address/address.js";
   "./pages/address/editAddress.js";
+  "./pages/category/category.js";
+  "./pages/release/selectAddress.js";
+  "./pages/release/fillInformation.js";
 }
 const _sfc_main = {
   __name: "App",

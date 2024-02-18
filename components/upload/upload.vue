@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { ref, getCurrentInstance, onMounted, defineProps } from 'vue';
+import { ref, onMounted, defineProps } from 'vue';
 
 const props = defineProps(['count']);
 const tempFilePaths = ref('/static/images/icon/plus-sign.png');
@@ -41,6 +41,12 @@ function UploadImg() {
 		})
 			.then((res) => {
 				const path = JSON.parse(res.data).data;
+
+				// 更新loginResult
+				let loginResult = uni.getStorageSync('loginResult');
+				loginResult.avatar = path;
+				uni.setStorageSync('loginResult', loginResult);
+
 				resolve(path);
 			})
 			.catch((err) => {
@@ -58,9 +64,18 @@ onMounted(() => { });
 
 <style lang="scss" scoped>
 .content {
-	width: 100%;
-	height: 100%;
-	margin: 5rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 300px;
+}
+
+.image {
+	height: 150px;
+	width: 150px;
+	box-shadow: 2px 2px 6px #b9aeae;
+	border-radius: 50%;
+	cursor: pointer;
 }
 </style>
 

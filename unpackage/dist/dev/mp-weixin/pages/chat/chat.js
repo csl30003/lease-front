@@ -1,28 +1,67 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-if (!Math) {
-  Upload();
-}
-const Upload = () => "../../components/Upload/Upload.js";
 const _sfc_main = {
   __name: "chat",
   setup(__props) {
-    const upLoad = common_vendor.ref(null);
-    function Submit() {
-      upLoad.value.UploadImg().then((res) => {
-        console.log(res);
+    const details = common_vendor.ref("");
+    const images = common_vendor.ref([]);
+    const categories = ["分类1", "分类2", "分类3"];
+    const selectedCategory = common_vendor.ref("");
+    const price = common_vendor.ref("");
+    const shippingOptions = ["快递", "自取"];
+    const selectedShipping = common_vendor.ref("");
+    const freight = common_vendor.ref("");
+    const publish = () => {
+    };
+    const addImage = () => {
+    };
+    const deleteImage = (index) => {
+    };
+    const changeCategory = (event) => {
+      selectedCategory.value = categories[event.detail.value];
+    };
+    const changeShipping = (event) => {
+      selectedShipping.value = shippingOptions[event.detail.value];
+      if (selectedShipping.value === "自取") {
+        freight.value = "";
+      }
+    };
+    const toSelectCategory = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/category/selectCategory"
       });
-    }
+    };
     return (_ctx, _cache) => {
-      return {
-        a: common_vendor.sr(upLoad, "8bd63070-0", {
-          "k": "upLoad"
+      return common_vendor.e({
+        a: common_vendor.o(publish),
+        b: details.value,
+        c: common_vendor.o(($event) => details.value = $event.detail.value),
+        d: common_vendor.f(images.value, (image, index, i0) => {
+          return {
+            a: image,
+            b: common_vendor.o(($event) => deleteImage(), index),
+            c: index
+          };
         }),
-        b: common_vendor.p({
-          count: 1
-        }),
-        c: common_vendor.o(Submit)
-      };
+        e: images.value.length < 9
+      }, images.value.length < 9 ? {
+        f: common_vendor.o(addImage)
+      } : {}, {
+        g: common_vendor.t(selectedCategory.value),
+        h: categories,
+        i: common_vendor.o(changeCategory),
+        j: price.value,
+        k: common_vendor.o(($event) => price.value = $event.detail.value),
+        l: common_vendor.t(selectedShipping.value),
+        m: shippingOptions,
+        n: common_vendor.o(changeShipping),
+        o: selectedShipping.value === "快递"
+      }, selectedShipping.value === "快递" ? {
+        p: freight.value,
+        q: common_vendor.o(($event) => freight.value = $event.detail.value)
+      } : {}, {
+        r: common_vendor.o(toSelectCategory)
+      });
     };
   }
 };
