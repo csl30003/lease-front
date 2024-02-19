@@ -28,7 +28,7 @@ const _sfc_main = {
     const toCatePage = (e) => {
       const { categoryid } = e.currentTarget.dataset;
       common_vendor.index.navigateTo({
-        url: `/pages/sub-category/sub-category?parentId=${parentId.value}&categoryId=${categoryid}`
+        url: `/pages/category/categoryShow?parentId=${parentId.value}&categoryId=${categoryid}`
       });
     };
     return (_ctx, _cache) => {

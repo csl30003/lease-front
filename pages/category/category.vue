@@ -69,15 +69,6 @@ const onMenuTab = async (e) => {
     selIndex.value = index
 }
 
-/**
- * 跳转搜索页
- */
-const toSearchPage = () => {
-    uni.navigateTo({
-        url: '/pages/search-page/search-page'
-    })
-}
-
 const getProdList = async (categoryId) => {
     // 加载分类列表
     let res = await getCategoryAPI(categoryId)
@@ -90,7 +81,7 @@ const getProdList = async (categoryId) => {
 const toCatePage = (e) => {
     const { categoryid } = e.currentTarget.dataset
     uni.navigateTo({
-        url: `/pages/sub-category/sub-category?parentId=${parentId.value}&categoryId=${categoryid}`
+        url: `/pages/category/categoryShow?parentId=${parentId.value}&categoryId=${categoryid}`
     })
 }
 

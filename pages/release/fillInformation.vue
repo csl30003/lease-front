@@ -27,10 +27,10 @@
         </view>
         <view class="form-item">
             <text class="label">成色</text>
-            <picker class="picker" mode="selector" :range="conditions" @change="onConditionChange">
+            <picker class="picker" mode="selector" :range="finenesss" @change="onFinenessChange">
                 <view class="picker-container">
-                    <text v-if="!isConditionSelected">点击选择成色</text>
-                    <text class="selected-option">{{ conditions[condition] }}</text>
+                    <text v-if="!isFinenessSelected">点击选择成色</text>
+                    <text class="selected-option">{{ finenesss[fineness] }}</text>
                 </view>
             </picker>
         </view>
@@ -86,14 +86,14 @@ const details = ref('');
 const price = ref(0);
 const quantity = ref(0);
 const deliveryMethod = ref('');
-const condition = ref('');
+const fineness = ref('');
 const usedYears = ref(0);
 
 const deliveryMethods = ref(['邮寄', '自提']);
-const conditions = ref(['全新', '几乎全新', '轻微使用痕迹', '明显使用痕迹']);
+const finenesss = ref(['全新', '几乎全新', '轻微使用痕迹', '明显使用痕迹']);
 
 const isDeliveryMethodSelected = ref(false);
-const isConditionSelected = ref(false);
+const isFinenessSelected = ref(false);
 
 const showUpload = ref(true);
 const files = ref([]);
@@ -135,9 +135,9 @@ const onDeliveryMethodChange = (e) => {
     isDeliveryMethodSelected.value = true;
 };
 
-const onConditionChange = (e) => {
-    condition.value = e.detail.value;
-    isConditionSelected.value = true;
+const onFinenessChange = (e) => {
+    fineness.value = e.detail.value;
+    isFinenessSelected.value = true;
 };
 
 const onUsedYearsInput = (e) => {
@@ -150,7 +150,7 @@ const submitForm = async () => {
     const priceParam = price.value
     const quantityParam = quantity.value
     const deliveryMethodParam = deliveryMethod.value
-    const conditionParam = condition.value
+    const finenessParam = fineness.value
     const usedYearsParam = usedYears.value
     const tempFilePaths = files.value;
 
@@ -198,7 +198,7 @@ const submitForm = async () => {
         return
     }
 
-    if (!conditionParam) {
+    if (!finenessParam) {
         uni.showToast({
             title: '请选择成色',
             icon: 'none'
@@ -233,7 +233,7 @@ const submitForm = async () => {
         price: price.value,
         stock: quantity.value,
         delivery: parseInt(deliveryMethod.value),
-        condition: parseInt(condition.value),
+        fineness: parseInt(fineness.value),
         used_years: usedYears.value,
         freight: 0,
         status: 0, // 0表示未发布，等图片都上传完再改为1

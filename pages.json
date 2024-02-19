@@ -107,6 +107,12 @@
 			}
 		},
 		{
+			"path": "pages/category/categoryShow",
+			"style": {
+				"navigationBarTitleText": "分类商品"
+			}
+		},
+		{
 			"path": "pages/release/selectAddress",
 			"style": {
 				"navigationBarTitleText": "选择地址"
@@ -122,6 +128,24 @@
 			"path": "pages/user/myProduct",
 			"style": {
 				"navigationBarTitleText": "我的商品"
+			}
+		},
+		{
+			"path": "pages/user/myDelistedProduct",
+			"style": {
+				"navigationBarTitleText": "下架了的商品"
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索"
+			}
+		},
+		{
+			"path": "pages/search/searchProductShow",
+			"style": {
+				"navigationBarTitleText": "搜索结果"
 			}
 		}
 	],

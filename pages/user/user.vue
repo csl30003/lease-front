@@ -81,6 +81,7 @@
 						收藏
 					</view>
 				</view>
+
 				<view class="col-item" @tap="myProduct">
 					<view v-if="loginResult" class="num">
 						
@@ -89,9 +90,22 @@
 						--
 					</view>
 					<view class="tit">
-						发布
+						发布的商品
 					</view>
 				</view>
+
+				<view class="col-item" @tap="myDelistedProduct">
+					<view v-if="loginResult" class="num">
+						
+					</view>
+					<view v-else class="num">
+						--
+					</view>
+					<view class="tit">
+						下架的商品
+					</view>
+				</view>
+
 				<view class="col-item" @tap="toAddressList">
 					<view v-if="loginResult" class="num">
 						
@@ -100,7 +114,7 @@
 						--
 					</view>
 					<view class="tit">
-						地址
+						我的地址
 					</view>
 				</view>
 			</view>
@@ -134,6 +148,12 @@ onShow(() => {
 const myProduct = () => {
 	uni.navigateTo({
 		url: '/pages/user/myProduct'
+	})
+}
+
+const myDelistedProduct = () => {
+	uni.navigateTo({
+		url: '/pages/user/myDelistedProduct'
 	})
 }
 

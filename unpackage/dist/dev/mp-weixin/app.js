@@ -14,9 +14,13 @@ if (!Math) {
   "./pages/address/address.js";
   "./pages/address/editAddress.js";
   "./pages/category/category.js";
+  "./pages/category/categoryShow.js";
   "./pages/release/selectAddress.js";
   "./pages/release/fillInformation.js";
   "./pages/user/myProduct.js";
+  "./pages/user/myDelistedProduct.js";
+  "./pages/search/search.js";
+  "./pages/search/searchProductShow.js";
 }
 const _sfc_main = {
   __name: "App",

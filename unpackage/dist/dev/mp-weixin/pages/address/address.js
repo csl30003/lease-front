@@ -55,7 +55,7 @@ const _sfc_main = {
             n: index
           };
         }),
-        c: common_assets._imports_0$2,
+        c: common_assets._imports_0$3,
         d: common_vendor.o(onAddAddr)
       });
     };

@@ -12,12 +12,12 @@ const _sfc_main = {
     const price = common_vendor.ref(0);
     const quantity = common_vendor.ref(0);
     const deliveryMethod = common_vendor.ref("");
-    const condition = common_vendor.ref("");
+    const fineness = common_vendor.ref("");
     const usedYears = common_vendor.ref(0);
     const deliveryMethods = common_vendor.ref(["邮寄", "自提"]);
-    const conditions = common_vendor.ref(["全新", "几乎全新", "轻微使用痕迹", "明显使用痕迹"]);
+    const finenesss = common_vendor.ref(["全新", "几乎全新", "轻微使用痕迹", "明显使用痕迹"]);
     const isDeliveryMethodSelected = common_vendor.ref(false);
-    const isConditionSelected = common_vendor.ref(false);
+    const isFinenessSelected = common_vendor.ref(false);
     const showUpload = common_vendor.ref(true);
     const files = common_vendor.ref([]);
     const gallery = common_vendor.ref(-1);
@@ -48,9 +48,9 @@ const _sfc_main = {
       deliveryMethod.value = e.detail.value;
       isDeliveryMethodSelected.value = true;
     };
-    const onConditionChange = (e) => {
-      condition.value = e.detail.value;
-      isConditionSelected.value = true;
+    const onFinenessChange = (e) => {
+      fineness.value = e.detail.value;
+      isFinenessSelected.value = true;
     };
     const onUsedYearsInput = (e) => {
       usedYears.value = Number(e.detail.value);
@@ -61,7 +61,7 @@ const _sfc_main = {
       const priceParam = price.value;
       const quantityParam = quantity.value;
       const deliveryMethodParam = deliveryMethod.value;
-      const conditionParam = condition.value;
+      const finenessParam = fineness.value;
       const usedYearsParam = usedYears.value;
       const tempFilePaths = files.value;
       if (!nameParam.trim()) {
@@ -103,7 +103,7 @@ const _sfc_main = {
         });
         return;
       }
-      if (!conditionParam) {
+      if (!finenessParam) {
         common_vendor.index.showToast({
           title: "请选择成色",
           icon: "none"
@@ -133,7 +133,7 @@ const _sfc_main = {
         price: price.value,
         stock: quantity.value,
         delivery: parseInt(deliveryMethod.value),
-        condition: parseInt(condition.value),
+        fineness: parseInt(fineness.value),
         used_years: usedYears.value,
         freight: 0,
         status: 0
@@ -256,11 +256,11 @@ const _sfc_main = {
         f: common_vendor.t(deliveryMethods.value[deliveryMethod.value]),
         g: deliveryMethods.value,
         h: common_vendor.o(onDeliveryMethodChange),
-        i: !isConditionSelected.value
-      }, !isConditionSelected.value ? {} : {}, {
-        j: common_vendor.t(conditions.value[condition.value]),
-        k: conditions.value,
-        l: common_vendor.o(onConditionChange),
+        i: !isFinenessSelected.value
+      }, !isFinenessSelected.value ? {} : {}, {
+        j: common_vendor.t(finenesss.value[fineness.value]),
+        k: finenesss.value,
+        l: common_vendor.o(onFinenessChange),
         m: common_vendor.o(onUsedYearsInput),
         n: common_vendor.t(files.value.length),
         o: common_vendor.f(files.value, (item, index, i0) => {

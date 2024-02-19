@@ -22,3 +22,11 @@ export const getMyProductAPI = (status) => {
         method: 'get',
     })
 }
+
+export const getProductListAPI = (data) => {
+    return http({
+        url: '/index/product/list',
+        method: 'get',
+        data: data
+    })
+}

@@ -12,9 +12,13 @@
     "pages/address/address",
     "pages/address/editAddress",
     "pages/category/category",
+    "pages/category/categoryShow",
     "pages/release/selectAddress",
     "pages/release/fillInformation",
-    "pages/user/myProduct"
+    "pages/user/myProduct",
+    "pages/user/myDelistedProduct",
+    "pages/search/search",
+    "pages/search/searchProductShow"
   ],
   "window": {
     "navigationBarTextStyle": "black",

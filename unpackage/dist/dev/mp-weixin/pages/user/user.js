@@ -18,6 +18,11 @@ const _sfc_main = {
         url: "/pages/user/myProduct"
       });
     };
+    const myDelistedProduct = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/user/myDelistedProduct"
+      });
+    };
     const toAddressList = () => {
       common_vendor.index.navigateTo({
         url: "/pages/address/address"
@@ -75,7 +80,7 @@ const _sfc_main = {
       } : {}, {
         f: !isAuthInfo.value
       }, !isAuthInfo.value ? {
-        g: common_assets._imports_0,
+        g: common_assets._imports_0$1,
         h: common_vendor.o(toLogin),
         i: common_vendor.o(toLogin)
       } : {}, {
@@ -108,10 +113,13 @@ const _sfc_main = {
         C: common_vendor.o(myProduct),
         D: loginResult.value
       }, loginResult.value ? {} : {}, {
-        E: common_vendor.o(toAddressList),
-        F: isAuthInfo.value
+        E: common_vendor.o(myDelistedProduct),
+        F: loginResult.value
+      }, loginResult.value ? {} : {}, {
+        G: common_vendor.o(toAddressList),
+        H: isAuthInfo.value
       }, isAuthInfo.value ? {
-        G: common_vendor.o(logout)
+        I: common_vendor.o(logout)
       } : {});
     };
   }
