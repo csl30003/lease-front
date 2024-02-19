@@ -81,7 +81,7 @@
 						收藏
 					</view>
 				</view>
-				<view class="col-item" @tap="handleTips">
+				<view class="col-item" @tap="myProduct">
 					<view v-if="loginResult" class="num">
 						
 					</view>
@@ -89,7 +89,7 @@
 						--
 					</view>
 					<view class="tit">
-						消息
+						发布
 					</view>
 				</view>
 				<view class="col-item" @tap="toAddressList">
@@ -130,6 +130,12 @@ onShow(() => {
 	loginResult.value = uni.getStorageSync('loginResult')
 	isAuthInfo.value = !!loginResult.value
 })
+
+const myProduct = () => {
+	uni.navigateTo({
+		url: '/pages/user/myProduct'
+	})
+}
 
 const toAddressList = () => {
 	uni.navigateTo({

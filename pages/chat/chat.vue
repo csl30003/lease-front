@@ -1,71 +1,3 @@
-<!-- <template>
-	<view class="">
-		<view class="">
-			<view class="">
-				<view class="">
-					<view class="">
-						<view class="" @tap="uploadImages">图片上传</view>
-						<view class="">{{ files.length }}/5</view>
-					</view>
-				</view>
-				<view class="">
-					<view class="" id="">
-						<view v-for="(item, index) in files" :key="index" class=""
-							@tap="previewImage(item)">
-							<image class="" :src="item" mode="aspectFill"></image>
-						</view>
-						<view v-if="gallery" v-for="(item, index) in files" :key="index" class=""
-							@tap="close">
-							<view class="">1/{{ files.length }}</view>
-							<view class="">
-								<image mode="aspectFit" class="" :src="item"></image>
-							</view>
-							<view class="">
-								<view class="">
-									<i class="" @tap="deleteImg(index)">删除</i>
-								</view>
-							</view>
-						</view>
-					</view>
-					<view class="" v-if="showUpload">
-						<view class="" @tap="chooseImage">添加</view>
-					</view>
-				</view>
-			</view>
-		</view>
-	</view>
-</template> -->
-<!-- <template>
-	<view class="container">
-		<view class="header">
-			<view class="upload-section">
-				<view class="upload-btn" @tap="uploadImages">图片上传</view>
-				<view class="file-count">{{ files.length }}/5</view>
-			</view>
-		</view>
-		<view class="image-section">
-			<view class="image-gallery" id="image-gallery">
-				<view v-for="(item, index) in files" :key="index" class="image-item"
-					@tap="previewImage(item)">
-					<image class="preview-image" :src="item" mode="aspectFill"></image>
-				</view>
-				<view v-if="gallery" v-for="(item, index) in files" :key="index" class="image-popup"
-					@tap="close">
-					<view class="image-index">1/{{ files.length }}</view>
-					<view class="image-wrapper">
-						<image mode="aspectFit" class="popup-image" :src="item"></image>
-					</view>
-					<view class="delete-btn">
-						<view class="delete-icon" @tap="deleteImg(index)">删除</view>
-					</view>
-				</view>
-			</view>
-			<view class="upload-btn-section" v-if="showUpload">
-				<view class="add-btn" @tap="chooseImage">添加</view>
-			</view>
-		</view>
-	</view>
-</template> -->
 <template>
 	<view class="container">
 		<view class="header">
@@ -193,8 +125,6 @@ const deleteImg = (index) => {
 	if (gallery.value === index) {
 		gallery.value = -1;
 	}
-
-	console.log(files.value);
 };
 
 const close = () => {

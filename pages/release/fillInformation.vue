@@ -38,15 +38,46 @@
             <text class="label">已用年限</text>
             <input class="input" type="number" @input="onUsedYearsInput" placeholder="请输入已用年限" />
         </view>
+    </view>
+
+    <view class="container">
+        <view class="header">
+            <view class="upload-section">
+                <!-- <view class="upload-btn" @tap="uploadImages">图片上传</view> -->
+                <text class="label">上传图片</text>
+                <view class="file-count">{{ files.length }}/6</view>
+            </view>
+        </view>
+        <view class="image-section">
+            <view class="image-gallery" id="image-gallery">
+                <view v-for="(item, index) in files" :key="index" class="image-item" @tap="previewImage(index)">
+                    <image class="preview-image" :src="item" mode="aspectFill"></image>
+                </view>
+                <view v-if="gallery !== -1" class="image-popup" @tap="close">
+                    <view class="image-index">{{ gallery + 1 }}/{{ files.length }}</view>
+                    <view class="image-wrapper">
+                        <image mode="aspectFit" class="popup-image" :src="files[gallery]"></image>
+                    </view>
+                    <view class="delete-btn">
+                        <view class="delete-icon" @tap="deleteImg(gallery)">删除图片</view>
+                    </view>
+                </view>
+            </view>
+            <view class="upload-btn-section" v-if="showUpload">
+                <view class="add-btn" @tap="chooseImage">添加图片</view>
+            </view>
+        </view>
+
         <view class="btn-container">
-            <button class="btn" @click="submitForm">继续</button>
+            <button class="btn" @click="submitForm">发布</button>
         </view>
     </view>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
+import { addProductAPI, updateProductStatusAPI } from "@/api/product"
 
 const categoryId = ref('')
 const addressId = ref('')
@@ -64,6 +95,20 @@ const conditions = ref(['全新', '几乎全新', '轻微使用痕迹', '明显�
 const isDeliveryMethodSelected = ref(false);
 const isConditionSelected = ref(false);
 
+const showUpload = ref(true);
+const files = ref([]);
+const gallery = ref(-1);
+
+// 监听图片数量变化
+watch(files, (newFiles) => {
+    if (newFiles.length > 5) {
+        showUpload.value = false;
+    } else {
+        showUpload.value = true;
+    }
+});
+
+// 获取种类id和地址id
 onLoad(async (options) => {
     categoryId.value = options.categoryId
     addressId.value = options.addressId
@@ -99,17 +144,7 @@ const onUsedYearsInput = (e) => {
     usedYears.value = Number(e.detail.value);
 }
 
-function submitForm() {
-    console.log('categoryId:', categoryId.value);
-    console.log('addressId:', addressId.value);
-    console.log('name:', name.value);
-    console.log('details:', details.value);
-    console.log('price:', price.value);
-    console.log('quantity:', quantity.value);
-    console.log('deliveryMethod:', deliveryMethod.value);
-    console.log('condition:', condition.value);
-    console.log('usedYears:', usedYears.value);
-
+const submitForm = async () => {
     const nameParam = name.value
     const detailsParam = details.value
     const priceParam = price.value
@@ -117,6 +152,7 @@ function submitForm() {
     const deliveryMethodParam = deliveryMethod.value
     const conditionParam = condition.value
     const usedYearsParam = usedYears.value
+    const tempFilePaths = files.value;
 
     if (!nameParam.trim()) {
         name.value = ''
@@ -179,76 +215,152 @@ function submitForm() {
         return
     }
 
+    // 判断tempFilePaths的长度，如果为0则不上传图片
+    if (tempFilePaths.length === 0) {
+        uni.showToast({
+            title: '请上传图片',
+            icon: 'none'
+        })
+        return
+    }
+
+    // 先调用addProductAPI
+    let res = await addProductAPI({
+        category_id: parseInt(categoryId.value),
+        address_id: parseInt(addressId.value),
+        name: name.value,
+        detail: details.value,
+        price: price.value,
+        stock: quantity.value,
+        delivery: parseInt(deliveryMethod.value),
+        condition: parseInt(condition.value),
+        used_years: usedYears.value,
+        freight: 0,
+        status: 0, // 0表示未发布，等图片都上传完再改为1
+    })
+
+    if (res.code === 200) {
+        const productId = res.data
+
+        // 先上传主图
+        let header = {
+            'Content-Type': 'application/json'
+        }
+        // 获取本地token
+        if (uni.getStorageSync("token")) {
+            header['Cookie'] = 'token=' + uni.getStorageSync("token");
+        }
+
+        const tempFilePaths = files.value;
+        uni.uploadFile({
+            url: 'http://localhost:8080/index/product/mainImage/' + productId,
+            filePath: tempFilePaths[0],
+            name: 'productMainImage',
+            method: 'POST',
+            header: header,
+            formData: {},
+            success: async (res) => {
+                const resTemp = JSON.parse(res.data);
+                if (resTemp.code == 200) {
+                    // 如果tempFilePaths长度大于1，则上传副图
+                    if (tempFilePaths.length > 1) {
+                        for (let i = 1; i < tempFilePaths.length; i++) {
+                            uni.uploadFile({
+                                url: 'http://localhost:8080/index/product/image/' + productId,
+                                filePath: tempFilePaths[i],
+                                name: 'productImage',
+                                method: 'POST',
+                                header: header,
+                                formData: {},
+                                success: async (res) => {
+                                    const resTemp = JSON.parse(res.data);
+                                    console.log(resTemp.code);
+                                    if (resTemp.code == 200) {
+                                        // 设置商品状态为已发布
+                                        await updateProductStatusAPI({
+                                            id: productId,
+                                            status: 1
+                                        })
+                                        uni.showToast({
+                                            title: '发布成功',
+                                            icon: "success",
+                                            duration: 1000,
+                                        })
+                                        setTimeout(() => {
+                                            wx.switchTab({
+                                                url: '/pages/user/user'
+                                            })
+                                        }, 500)
+                                    } else {
+                                        uni.showToast({
+                                            title: '发布失败',
+                                            icon: "none",
+                                            duration: 1000,
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    } else {
+                        // 设置商品状态为已发布
+                        await updateProductStatusAPI({
+                            id: productId,
+                            status: 1
+                        })
+                        uni.showToast({
+                            title: '发布成功',
+                            icon: "success",
+                            duration: 1000,
+                        })
+                        setTimeout(() => {
+                            wx.switchTab({
+                                url: '/pages/user/user'
+                            })
+                        }, 500)
+                    }
+
+                } else {
+                    console.log("主图上传失败");
+                }
+            }
+        })
+
+
+    } else {
+        uni.showToast({
+            title: '发布失败',
+            icon: "none",
+            duration: 1000,
+        })
+    }
 }
+
+const chooseImage = () => {
+    uni.chooseImage({
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+        success: (res) => {
+            files.value = [...files.value, res.tempFilePaths[0]];
+        }
+    });
+};
+
+const previewImage = (index) => {
+    gallery.value = index;
+};
+
+const deleteImg = (index) => {
+    files.value.splice(index, 1);
+    if (gallery.value === index) {
+        gallery.value = -1;
+    }
+};
+
+const close = () => {
+    gallery.value = -1;
+};
 </script>
 
 <style scoped lang="scss">
-.form-container {
-    padding: 20rpx;
-}
-
-.form-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20rpx;
-}
-
-.label {
-    flex: 1;
-    font-size: 28rpx;
-    color: #333333;
-}
-
-.input {
-    flex: 3;
-    padding: 10rpx;
-    border: 1rpx solid #dddddd;
-    border-radius: 5rpx;
-}
-.textarea {
-    flex: 3;
-    padding: 10rpx;
-    border: 1rpx solid #dddddd;
-    border-radius: 5rpx;
-}
-
-.picker {
-    flex: 3;
-    position: relative;
-}
-
-.picker-text {
-    font-size: 28rpx;
-    color: #333333;
-}
-
-.picker-view {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.picker-view-item {
-    line-height: 50rpx;
-    font-size: 28rpx;
-    color: #333333;
-    text-align: center;
-}
-
-.btn-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 40rpx;
-}
-
-.btn {
-    padding: 10rpx 20rpx;
-    font-size: 30rpx;
-    color: #ffffff;
-    background-color: #007aff;
-    border-radius: 5rpx;
-}
+@import "./fillInformation.scss";
 </style>

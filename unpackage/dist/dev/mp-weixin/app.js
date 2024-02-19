@@ -16,6 +16,7 @@ if (!Math) {
   "./pages/category/category.js";
   "./pages/release/selectAddress.js";
   "./pages/release/fillInformation.js";
+  "./pages/user/myProduct.js";
 }
 const _sfc_main = {
   __name: "App",

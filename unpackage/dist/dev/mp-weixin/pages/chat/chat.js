@@ -88,7 +88,6 @@ const _sfc_main = {
       if (gallery.value === index) {
         gallery.value = -1;
       }
-      console.log(files.value);
     };
     const close = () => {
       gallery.value = -1;

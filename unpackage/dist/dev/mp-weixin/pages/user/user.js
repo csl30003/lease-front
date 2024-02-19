@@ -13,6 +13,11 @@ const _sfc_main = {
       loginResult.value = common_vendor.index.getStorageSync("loginResult");
       isAuthInfo.value = !!loginResult.value;
     });
+    const myProduct = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/user/myProduct"
+      });
+    };
     const toAddressList = () => {
       common_vendor.index.navigateTo({
         url: "/pages/address/address"
@@ -100,7 +105,7 @@ const _sfc_main = {
         A: common_vendor.o((...args) => _ctx.myCollection && _ctx.myCollection(...args)),
         B: loginResult.value
       }, loginResult.value ? {} : {}, {
-        C: common_vendor.o((...args) => _ctx.handleTips && _ctx.handleTips(...args)),
+        C: common_vendor.o(myProduct),
         D: loginResult.value
       }, loginResult.value ? {} : {}, {
         E: common_vendor.o(toAddressList),

@@ -117,6 +117,12 @@
 			"style": {
 				"navigationBarTitleText": "填写信息"
 			}
+		},
+		{
+			"path": "pages/user/myProduct",
+			"style": {
+				"navigationBarTitleText": "我的商品"
+			}
 		}
 	],
 	"globalStyle": {
