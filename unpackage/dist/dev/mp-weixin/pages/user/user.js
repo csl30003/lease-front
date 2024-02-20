@@ -80,46 +80,45 @@ const _sfc_main = {
       } : {}, {
         f: !isAuthInfo.value
       }, !isAuthInfo.value ? {
-        g: common_assets._imports_0$1,
-        h: common_vendor.o(toLogin),
-        i: common_vendor.o(toLogin)
+        g: common_vendor.o(toLogin),
+        h: common_vendor.o(toLogin)
       } : {}, {
-        j: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
-        k: common_assets._imports_1,
-        l: orderAmount.value.unPay > 0
+        i: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        j: common_assets._imports_0$1,
+        k: orderAmount.value.unPay > 0
       }, orderAmount.value.unPay > 0 ? {
-        m: common_vendor.t(orderAmount.value.unPay)
+        l: common_vendor.t(orderAmount.value.unPay)
       } : {}, {
-        n: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
-        o: common_assets._imports_2,
-        p: orderAmount.value.payed > 0
+        m: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        n: common_assets._imports_1,
+        o: orderAmount.value.payed > 0
       }, orderAmount.value.payed > 0 ? {
-        q: common_vendor.t(orderAmount.value.payed)
+        p: common_vendor.t(orderAmount.value.payed)
       } : {}, {
-        r: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
-        s: common_assets._imports_3,
-        t: orderAmount.value.consignment > 0
+        q: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        r: common_assets._imports_2,
+        s: orderAmount.value.consignment > 0
       }, orderAmount.value.consignment > 0 ? {
-        v: common_vendor.t(orderAmount.value.consignment)
+        t: common_vendor.t(orderAmount.value.consignment)
       } : {}, {
-        w: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
-        x: common_assets._imports_4,
-        y: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
-        z: loginResult.value
+        v: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        w: common_assets._imports_3,
+        x: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        y: loginResult.value
       }, loginResult.value ? {} : {}, {
-        A: common_vendor.o((...args) => _ctx.myCollection && _ctx.myCollection(...args)),
-        B: loginResult.value
+        z: common_vendor.o((...args) => _ctx.myCollection && _ctx.myCollection(...args)),
+        A: loginResult.value
       }, loginResult.value ? {} : {}, {
-        C: common_vendor.o(myProduct),
-        D: loginResult.value
+        B: common_vendor.o(myProduct),
+        C: loginResult.value
       }, loginResult.value ? {} : {}, {
-        E: common_vendor.o(myDelistedProduct),
-        F: loginResult.value
+        D: common_vendor.o(myDelistedProduct),
+        E: loginResult.value
       }, loginResult.value ? {} : {}, {
-        G: common_vendor.o(toAddressList),
-        H: isAuthInfo.value
+        F: common_vendor.o(toAddressList),
+        G: isAuthInfo.value
       }, isAuthInfo.value ? {
-        I: common_vendor.o(logout)
+        H: common_vendor.o(logout)
       } : {});
     };
   }

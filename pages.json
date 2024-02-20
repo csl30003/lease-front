@@ -49,7 +49,7 @@
 		{
 			"path": "pages/chat/chat",
 			"style": {
-				"navigationBarTitleText": "消息"
+				"navigationBarTitleText": "聊天"
 			}
 		},
 		{
@@ -146,6 +146,18 @@
 			"path": "pages/search/searchProductShow",
 			"style": {
 				"navigationBarTitleText": "搜索结果"
+			}
+		},
+		{
+			"path": "pages/product/product",
+			"style": {
+				"navigationBarTitleText": "商品详情"
+			}
+		},
+		{
+			"path": "pages/chat/chatDetail",
+			"style": {
+				"navigationBarTitleText": "聊天详情"
 			}
 		}
 	],

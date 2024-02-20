@@ -14,7 +14,7 @@
 
 		<view v-if="!isAuthInfo" class="userinfo-none">
 			<view class="default-pic" @tap="toLogin">
-				<image src="@/static/images/icon/head04.png" />
+				<image src="/static/images/icon/head04.png" />
 			</view>
 			<view class="none-login" @tap="toLogin">
 				<button class="unlogin">

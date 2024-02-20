@@ -6,7 +6,6 @@ if (!Math) {
   "./pages/release/release.js";
   "./pages/chat/chat.js";
   "./pages/user/user.js";
-  "./pages/product/category.js";
   "./pages/login/login.js";
   "./pages/register/register.js";
   "./pages/user/editUser.js";
@@ -21,6 +20,8 @@ if (!Math) {
   "./pages/user/myDelistedProduct.js";
   "./pages/search/search.js";
   "./pages/search/searchProductShow.js";
+  "./pages/product/product.js";
+  "./pages/chat/chatDetail.js";
 }
 const _sfc_main = {
   __name: "App",

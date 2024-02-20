@@ -41,6 +41,7 @@ const _sfc_main = {
         });
         common_vendor.index.setStorageSync("token", res.data.token);
         common_vendor.index.setStorageSync("loginResult", {
+          id: res.data.id,
           name: res.data.name,
           avatar: res.data.avatar,
           gender: res.data.gender

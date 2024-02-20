@@ -15,7 +15,6 @@
 					类别
 				</button>
 			</view>
-
 		</view>
 	</view>
 </template>

@@ -32,6 +32,12 @@ const getUserInfoAPI = () => {
     method: "get"
   });
 };
+const getOtherUserInfoAPI = (id) => {
+  return utils_http.http({
+    url: "/index/getUserInfo/" + id,
+    method: "get"
+  });
+};
 const updateUserInfoAPI = (params) => {
   return utils_http.http({
     url: "/index/updateUser",
@@ -46,6 +52,7 @@ const updateUserInfoAPI = (params) => {
     }
   });
 };
+exports.getOtherUserInfoAPI = getOtherUserInfoAPI;
 exports.getUserInfoAPI = getUserInfoAPI;
 exports.loginAPI = loginAPI;
 exports.logoutAPI = logoutAPI;

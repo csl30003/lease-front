@@ -18,7 +18,9 @@
     "pages/user/myProduct",
     "pages/user/myDelistedProduct",
     "pages/search/search",
-    "pages/search/searchProductShow"
+    "pages/search/searchProductShow",
+    "pages/product/product",
+    "pages/chat/chatDetail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -108,6 +108,7 @@ const login = async () => {
     // setStorageSync
     uni.setStorageSync('token', res.data.token)
     uni.setStorageSync('loginResult', {
+      id: res.data.id,
       name: res.data.name,
       avatar: res.data.avatar,
       gender: res.data.gender,

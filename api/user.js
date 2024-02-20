@@ -36,6 +36,13 @@ export const getUserInfoAPI = () => {
     })
 }
 
+export const getOtherUserInfoAPI = (id) => {
+    return http({
+        url: '/index/getUserInfo/' + id,
+        method: 'get',
+    })
+}
+
 export const updateUserInfoAPI = (params) => {
     return http({
         url: '/index/updateUser',

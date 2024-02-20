@@ -50,7 +50,7 @@ const http = (params) => {
               break;
             default:
               common_vendor.index.showModal({
-                title: "请重试...",
+                title: res.data.message,
                 showCancel: false
               });
               break;

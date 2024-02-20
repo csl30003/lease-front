@@ -30,3 +30,10 @@ export const getProductListAPI = (data) => {
         data: data
     })
 }
+
+export const getProductAPI = (id) => {
+    return http({
+        url: '/index/product/' + id,
+        method: 'get',
+    })
+}

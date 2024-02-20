@@ -53,7 +53,7 @@ export default (params) => {
                             break;
                         default:
                             uni.showModal({
-                                title: '请重试...',
+                                title: res.data.message,
                                 showCancel: false,
                             })
                             break;
