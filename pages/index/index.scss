@@ -1,0 +1,45 @@
+.container {
+    background: #f7f7f7;
+    height: auto;
+}
+
+.container {
+    .bg-sear {
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        line-height: 56rpx;
+        background: #fff;
+        padding: 20rpx 0;
+        text-align: center;
+        top: 0;
+    }
+}
+
+.bg-sear {
+    .section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60rpx;
+        background: #fff;
+        z-index: 1;
+        border-radius: 50rpx;
+        width: 92%;
+        margin: auto;
+        left: 4%;
+        background: #f7f7f7;
+
+        .placeholder {
+            display: block;
+            font-size: 24rpx;
+            color: #999;
+        }
+
+        .search-img {
+            width: 32rpx;
+            height: 32rpx;
+            margin-right: 10rpx;
+        }
+    }
+}
