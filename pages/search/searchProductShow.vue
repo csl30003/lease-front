@@ -58,7 +58,7 @@
             </view>
 
             <!-- 空占位 -->
-            <view v-if="!searchProdList.length" :class="['empty', showType == 1 ? 'empty-top' : '']">
+            <view v-if="!searchProdList.length" :class="['empty', 'empty-top']">
                 暂无结果
             </view>
         </view>

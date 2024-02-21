@@ -93,9 +93,7 @@ const _sfc_main = {
           };
         }),
         l: !searchProdList.value.length
-      }, !searchProdList.value.length ? {
-        m: common_vendor.n(_ctx.showType == 1 ? "empty-top" : "")
-      } : {});
+      }, !searchProdList.value.length ? {} : {});
     };
   }
 };

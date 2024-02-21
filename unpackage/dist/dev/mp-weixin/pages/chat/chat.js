@@ -34,9 +34,7 @@ const _sfc_main = {
           };
         }),
         b: !chatUserList.value.length
-      }, !chatUserList.value.length ? {
-        c: common_vendor.n(_ctx.showType == 1 ? "empty-top" : "")
-      } : {});
+      }, !chatUserList.value.length ? {} : {});
     };
   }
 };

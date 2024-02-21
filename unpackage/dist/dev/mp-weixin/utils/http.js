@@ -74,8 +74,6 @@ const http = (params) => {
         reject(err);
       },
       complete() {
-        common_vendor.index.hideLoading();
-        common_vendor.index.hideToast();
       }
     });
   }).catch((e) => {

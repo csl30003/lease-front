@@ -59,12 +59,6 @@
 			}
 		},
 		{
-			"path": "pages/product/category",
-			"style": {
-				"navigationBarTitleText": "分类"
-			}
-		},
-		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
@@ -158,6 +152,18 @@
 			"path": "pages/chat/chatDetail",
 			"style": {
 				"navigationBarTitleText": "聊天详情"
+			}
+		},
+		{
+			"path": "pages/comment/comment",
+			"style": {
+				"navigationBarTitleText": "评论"
+			}
+		},
+		{
+			"path": "pages/comment/commentDetail",
+			"style": {
+				"navigationBarTitleText": "评论详情"
 			}
 		}
 	],

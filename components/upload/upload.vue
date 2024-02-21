@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const props = defineProps(['count']);
 const tempFilePaths = ref('/static/images/icon/plus-sign.png');

@@ -26,7 +26,7 @@
 			</view>
 
 			<!-- 空占位 -->
-			<view v-if="!chatUserList.length" :class="['empty', showType == 1 ? 'empty-top' : '']">
+			<view v-if="!chatUserList.length" :class="['empty', 'empty-top']">
 				暂无聊天内容
 			</view>
 		</view>

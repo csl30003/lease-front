@@ -3,6 +3,7 @@ const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
 const api_product = require("../../api/product.js");
 const api_collection = require("../../api/collection.js");
+const api_comment = require("../../api/comment.js");
 const utils_util = require("../../utils/util.js");
 require("../../utils/http.js");
 const _sfc_main = {
@@ -20,6 +21,7 @@ const _sfc_main = {
       prodId = options.prodid;
       await getProdInfo();
       await getCollection();
+      await getComments();
     });
     const app = getApp();
     const totalCartNum = common_vendor.ref(0);
@@ -134,6 +136,25 @@ const _sfc_main = {
         url: "/pages/chat/chatDetail?toId=" + userID.value
       });
     };
+    const comments = common_vendor.ref([]);
+    const getComments = async () => {
+      const res = await api_comment.getTwoCommentAPI(prodId);
+      if (res.data === null) {
+        comments.value = [];
+        return;
+      }
+      comments.value = res.data;
+    };
+    const goToAllComments = async () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/comment/comment?prodid=" + prodId
+      });
+    };
+    const goToCommentDetails = (commentId) => {
+      common_vendor.index.navigateTo({
+        url: "/pages/comment/commentDetail?commentId=" + commentId
+      });
+    };
     const toHomePage = () => {
       common_vendor.index.switchTab({
         url: "/pages/index/index"
@@ -166,15 +187,29 @@ const _sfc_main = {
         s: common_vendor.t(userName.value),
         t: common_vendor.o(toChat),
         v: common_vendor.o(toChat),
-        w: common_vendor.f(imageList.value, (image, index, i0) => {
+        w: comments.value.length === 0
+      }, comments.value.length === 0 ? {} : {
+        x: common_vendor.o(goToAllComments),
+        y: common_vendor.f(comments.value, (comment, k0, i0) => {
+          return {
+            a: comment.avatar,
+            b: common_vendor.t(comment.name),
+            c: common_vendor.t(comment.content),
+            d: common_vendor.t(comment.created_at),
+            e: common_vendor.o(($event) => goToCommentDetails(comment.id), comment.id),
+            f: comment.id
+          };
+        })
+      }, {
+        z: common_vendor.f(imageList.value, (image, index, i0) => {
           return {
             a: image.url,
             b: index
           };
         }),
-        x: common_assets._imports_2$1,
-        y: common_vendor.o(toHomePage),
-        z: common_vendor.o((...args) => _ctx.showSku && _ctx.showSku(...args))
+        A: common_assets._imports_2$1,
+        B: common_vendor.o(toHomePage),
+        C: common_vendor.o((...args) => _ctx.showSku && _ctx.showSku(...args))
       });
     };
   }

@@ -4,7 +4,6 @@
     "pages/release/release",
     "pages/chat/chat",
     "pages/user/user",
-    "pages/product/category",
     "pages/login/login",
     "pages/register/register",
     "pages/user/editUser",
@@ -20,7 +19,9 @@
     "pages/search/search",
     "pages/search/searchProductShow",
     "pages/product/product",
-    "pages/chat/chatDetail"
+    "pages/chat/chatDetail",
+    "pages/comment/comment",
+    "pages/comment/commentDetail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

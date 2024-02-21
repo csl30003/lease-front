@@ -22,6 +22,8 @@ if (!Math) {
   "./pages/search/searchProductShow.js";
   "./pages/product/product.js";
   "./pages/chat/chatDetail.js";
+  "./pages/comment/comment.js";
+  "./pages/comment/commentDetail.js";
 }
 const _sfc_main = {
   __name: "App",

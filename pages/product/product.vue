@@ -138,6 +138,35 @@
 			</view>
 		</view>
 
+		<!-- 评论 -->
+		<view class="comment-block">
+			<view v-if="comments.length === 0" class="no-comment">商品暂无评论</view>
+			<view v-else>
+				<view class="comment-section">
+					<view class="comment-font">
+						评论
+					</view>
+					<view class="view-all-comments" @tap="goToAllComments">
+						查看全部评论
+					</view>
+				</view>
+
+				<view v-for="comment in comments" :key="comment.id" class="comment">
+					<view @tap="goToCommentDetails(comment.id)">
+						<view class="avatar">
+							<image :src="comment.avatar" />
+						</view>
+						<view class="info">
+							<view class="name">{{ comment.name }}</view>
+							<view class="content">{{ comment.content }}</view>
+							<view class="created-at">{{ comment.created_at }}</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+
 		<!-- 副图 -->
 		<view class="mainImage" v-for="(image, index) in imageList" :key="index">
 			<image :src="image.url" />
@@ -309,6 +338,7 @@ import { ref } from 'vue'
 import { onShow, onLoad } from '@dcloudio/uni-app'
 import { getProductAPI } from "@/api/product"
 import { isCollectionAPI, collectionAPI } from "@/api/collection"
+import { getTwoCommentAPI } from "@/api/comment"
 import util from '@/utils/util'
 
 const indicatorDots = ref(true)
@@ -328,6 +358,7 @@ onLoad(async (options) => {
 	// getProdCommData() // 加载评论项
 	// getLittleProdComm()
 	await getCollection() // 查看用户是否收藏
+	await getComments()
 })
 
 const app = getApp()
@@ -495,7 +526,7 @@ const toChat = async () => {
 		});
 		return
 	}
-	
+
 	const loginResult = uni.getStorageSync('loginResult')
 	if (parseInt(loginResult.id) === userID.value) {
 		uni.showToast({
@@ -507,6 +538,29 @@ const toChat = async () => {
 
 	uni.navigateTo({
 		url: '/pages/chat/chatDetail?toId=' + userID.value
+	})
+}
+
+
+const comments = ref([])
+const getComments = async () => {
+	const res = await getTwoCommentAPI(prodId)
+	if (res.data === null) {
+		comments.value = []
+		return
+	}
+	comments.value = res.data
+}
+
+const goToAllComments = async () => {
+	uni.navigateTo({
+		url: '/pages/comment/comment?prodid=' + prodId
+	})
+}
+
+const goToCommentDetails = (commentId) => {
+	uni.navigateTo({
+		url: '/pages/comment/commentDetail?commentId=' + commentId
 	})
 }
 

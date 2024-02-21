@@ -79,8 +79,8 @@ export default (params) => {
             },
             complete() {
                 // 不管成功还是失败都会执行
-                uni.hideLoading();
-                uni.hideToast();
+                // uni.hideLoading();
+                // uni.hideToast();
             }
         });
     }).catch((e) => { });
