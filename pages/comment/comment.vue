@@ -72,6 +72,9 @@ onLoad(async (options) => {
 const getComments = async () => {
     const res = await getRootCommentAPI(prodId)
     comments.value = res.data
+    if (!comments.value) {
+        comments.value = []
+    }
 
     // 循环遍历评论列表，如果子评论为null，则设置为空数组
     comments.value.forEach(comment => {

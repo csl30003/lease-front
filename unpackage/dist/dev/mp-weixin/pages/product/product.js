@@ -9,24 +9,12 @@ require("../../utils/http.js");
 const _sfc_main = {
   __name: "product",
   setup(__props) {
-    common_vendor.ref(true);
-    common_vendor.ref("#f2f2f2");
-    common_vendor.ref("#eb2444");
-    common_vendor.ref(true);
-    common_vendor.ref(3e3);
-    common_vendor.ref(1e3);
-    common_vendor.ref([]);
     let prodId = 0;
     common_vendor.onLoad(async (options) => {
       prodId = options.prodid;
       await getProdInfo();
       await getCollection();
       await getComments();
-    });
-    const app = getApp();
-    const totalCartNum = common_vendor.ref(0);
-    common_vendor.onShow(() => {
-      totalCartNum.value = app.globalData.totalCartCount;
     });
     const isCollection = common_vendor.ref(false);
     const getCollection = async () => {
@@ -44,10 +32,6 @@ const _sfc_main = {
       isCollection.value = !isCollection.value;
       common_vendor.index.hideLoading();
     };
-    common_vendor.ref([]);
-    common_vendor.ref("");
-    common_vendor.ref("");
-    common_vendor.ref("");
     const name = common_vendor.ref("");
     const price = common_vendor.ref(0);
     const content = common_vendor.ref("");
@@ -160,6 +144,55 @@ const _sfc_main = {
         url: "/pages/index/index"
       });
     };
+    const showSkuModal = common_vendor.ref(false);
+    const quantity = common_vendor.ref(1);
+    const days = common_vendor.ref(1);
+    const showSku = () => {
+      if (prodNum.value === 0) {
+        common_vendor.index.showToast({
+          title: "已缺货",
+          icon: "none"
+        });
+        return;
+      }
+      showSkuModal.value = true;
+    };
+    const closeSkuModal = () => {
+      showSkuModal.value = false;
+    };
+    const increaseQuantity = () => {
+      if (quantity.value < prodNum.value) {
+        quantity.value++;
+      }
+    };
+    const decreaseQuantity = () => {
+      if (quantity.value > 1) {
+        quantity.value--;
+      }
+    };
+    const increaseDays = () => {
+      if (days.value < 30) {
+        days.value++;
+      }
+    };
+    const decreaseDays = () => {
+      if (days.value > 1) {
+        days.value--;
+      }
+    };
+    const goToNextPage = () => {
+      const loginResult = common_vendor.index.getStorageSync("loginResult");
+      if (parseInt(loginResult.id) === userID.value) {
+        common_vendor.index.showToast({
+          title: "不能购买自己的商品",
+          icon: "none"
+        });
+        return;
+      }
+      common_vendor.index.navigateTo({
+        url: "/pages/product/productSelectAddress?productId=" + prodId + "&quantity=" + quantity.value + "&days=" + days.value
+      });
+    };
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: mainImage.value,
@@ -188,9 +221,11 @@ const _sfc_main = {
         t: common_vendor.o(toChat),
         v: common_vendor.o(toChat),
         w: comments.value.length === 0
-      }, comments.value.length === 0 ? {} : {
-        x: common_vendor.o(goToAllComments),
-        y: common_vendor.f(comments.value, (comment, k0, i0) => {
+      }, comments.value.length === 0 ? {
+        x: common_vendor.o(goToAllComments)
+      } : {
+        y: common_vendor.o(goToAllComments),
+        z: common_vendor.f(comments.value, (comment, k0, i0) => {
           return {
             a: comment.avatar,
             b: common_vendor.t(comment.name),
@@ -201,19 +236,32 @@ const _sfc_main = {
           };
         })
       }, {
-        z: common_vendor.f(imageList.value, (image, index, i0) => {
+        A: common_vendor.f(imageList.value, (image, index, i0) => {
           return {
             a: image.url,
             b: index
           };
         }),
-        A: common_assets._imports_2$1,
-        B: common_vendor.o(toHomePage),
-        C: common_vendor.o((...args) => _ctx.showSku && _ctx.showSku(...args))
-      });
+        B: common_assets._imports_2$1,
+        C: common_vendor.o(toHomePage),
+        D: common_vendor.o(showSku),
+        E: showSkuModal.value
+      }, showSkuModal.value ? {
+        F: common_assets._imports_3$1,
+        G: common_vendor.o(decreaseQuantity),
+        H: common_vendor.t(quantity.value),
+        I: common_assets._imports_4,
+        J: common_vendor.o(increaseQuantity),
+        K: common_assets._imports_3$1,
+        L: common_vendor.o(decreaseDays),
+        M: common_vendor.t(days.value),
+        N: common_assets._imports_4,
+        O: common_vendor.o(increaseDays),
+        P: common_vendor.o(closeSkuModal),
+        Q: common_vendor.o(goToNextPage)
+      } : {});
     };
   }
 };
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-946a9793"], ["__file", "D:/HBuilderProjects/lease/pages/product/product.vue"]]);
-_sfc_main.__runtimeHooks = 2;
 wx.createPage(MiniProgramPage);

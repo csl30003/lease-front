@@ -19,9 +19,12 @@
     "pages/search/search",
     "pages/search/searchProductShow",
     "pages/product/product",
+    "pages/product/productSelectAddress",
     "pages/chat/chatDetail",
     "pages/comment/comment",
-    "pages/comment/commentDetail"
+    "pages/comment/commentDetail",
+    "pages/order/order",
+    "pages/order/pendingPaymentOrder"
   ],
   "window": {
     "navigationBarTextStyle": "black",

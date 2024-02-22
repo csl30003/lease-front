@@ -21,6 +21,9 @@ const _sfc_main = {
     const getComments = async () => {
       const res = await api_comment.getRootCommentAPI(prodId);
       comments.value = res.data;
+      if (!comments.value) {
+        comments.value = [];
+      }
       comments.value.forEach((comment) => {
         if (!comment.three_to_comments) {
           comment.three_to_comments = [];

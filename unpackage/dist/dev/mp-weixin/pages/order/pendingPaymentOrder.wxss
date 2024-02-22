@@ -1,0 +1,254 @@
+.container.data-v-df4e43d9 {
+  background: #f4f4f4;
+}
+.order-detail.data-v-df4e43d9 {
+  margin-bottom: 120rpx;
+  padding-bottom: 160rpx;
+}
+.order-detail .delivery-addr.data-v-df4e43d9 {
+  padding: 20rpx 30rpx;
+  background: #fff;
+}
+.order-detail .delivery-addr .user-info.data-v-df4e43d9 {
+  line-height: 48rpx;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.order-detail .delivery-addr .user-info .item.data-v-df4e43d9 {
+  font-size: 28rpx;
+  margin-right: 30rpx;
+  vertical-align: top;
+  display: inline-block;
+}
+.order-detail .delivery-addr .addr.data-v-df4e43d9 {
+  font-size: 26rpx;
+  line-height: 36rpx;
+  color: #999;
+  word-wrap: break-word;
+}
+.prod-item.data-v-df4e43d9 {
+  background-color: #fff;
+  margin-top: 15rpx;
+  font-size: 28rpx;
+}
+.prod-item .item-cont.data-v-df4e43d9 {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border-top: 2rpx solid #f1f1f1;
+}
+.prod-item .item-cont .prod-pic.data-v-df4e43d9 {
+  font-size: 0;
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  overflow: hidden;
+  background: #fff;
+  margin-right: 16rpx;
+}
+.prod-item .item-cont .prod-pic image.data-v-df4e43d9 {
+  width: 180rpx;
+  height: 180rpx;
+  width: 100%;
+  height: 100%;
+}
+.prod-item .item-cont .prod-info.data-v-df4e43d9 {
+  margin-left: 10rpx;
+  font-size: 28rpx;
+  width: 100%;
+  position: relative;
+  height: 80px;
+  flex: 1;
+}
+.prod-item .item-cont .prod-info .price-nums.data-v-df4e43d9 {
+  margin-top: 80rpx;
+}
+.prod-item .item-cont .prod-info .price-nums .prodprice.data-v-df4e43d9 {
+  color: #333;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  float: right;
+}
+.prod-item .item-cont .prod-info .price-nums .btn-box.data-v-df4e43d9 {
+  float: right;
+  text-align: right;
+}
+.prod-item .item-cont .prod-info .price-nums .btn-box .btn.data-v-df4e43d9 {
+  padding: 6rpx 30rpx;
+  line-height: 36rpx;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  display: inline-block;
+  border: 2rpx solid #e4e4e4;
+  border-radius: 50rpx;
+}
+.prod-item .item-cont .prod-info .prodname.data-v-df4e43d9 {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  max-height: 86rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+.prod-item .item-cont .prod-info .prod-info-cont.data-v-df4e43d9 {
+  position: relative;
+  color: #999;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+}
+.prod-item .item-cont .prod-info .prod-info-cont .info-item.data-v-df4e43d9 {
+  color: #999;
+  height: 28rpx;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  width: 70%;
+}
+.prod-item .item-cont .prod-info .prod-info-cont .number.data-v-df4e43d9 {
+  float: left;
+  margin-right: 20rpx;
+}
+.order-msg.data-v-df4e43d9 {
+  background: #fff;
+  margin-top: 15rpx;
+  font-size: 28rpx;
+}
+.order-msg .msg-item.data-v-df4e43d9 {
+  padding: 20rpx;
+  border-top: 2rpx solid #f1f1f1;
+}
+.order-msg .msg-item.data-v-df4e43d9:first-child {
+  border: 0;
+}
+.order-msg .msg-item .item.data-v-df4e43d9 {
+  display: flex;
+  padding: 10rpx 0;
+  align-items: center;
+  box-sizing: border-box;
+}
+.order-msg .msg-item .item .item-tit.data-v-df4e43d9 {
+  min-width: 140rpx;
+  color: #999;
+  line-height: 48rpx;
+}
+.order-msg .msg-item .item .item-txt.data-v-df4e43d9 {
+  flex: 1;
+  line-height: 48rpx;
+}
+.order-msg .msg-item .item .item-txt.remarks.data-v-df4e43d9 {
+  max-width: 600rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.order-msg .msg-item .item .copy-btn.data-v-df4e43d9 {
+  display: block;
+  margin-left: 20rpx;
+  border: 2rpx solid #e4e4e4;
+  padding: 6rpx 24rpx;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.order-msg .msg-item .item .item-txt.price.data-v-df4e43d9 {
+  text-align: right;
+}
+.order-msg .msg-item .item.payment.data-v-df4e43d9 {
+  border-top: 2rpx solid #f1f1f1;
+  color: #eb2444;
+  padding-top: 30rpx;
+}
+.order-detail-footer.data-v-df4e43d9 {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.button.data-v-df4e43d9 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 70px;
+  width: 50%;
+  font-size: 16px;
+  border-radius: 4px;
+}
+.button.data-v-df4e43d9:first-child {
+  background-color: #ffffff;
+  color: #007aff;
+  border: 1px solid #007aff;
+}
+.button.data-v-df4e43d9:last-child {
+  background-color: #007aff;
+  color: #ffffff;
+}
+.clearfix.data-v-df4e43d9:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+.order-state.data-v-df4e43d9 {
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: right;
+  margin-right: 20rpx;
+}
+.order-state .order-sts.data-v-df4e43d9 {
+  color: #eb2444;
+  font-size: 28rpx;
+}
+.order-state .order-sts.gray.data-v-df4e43d9 {
+  color: #999;
+  height: 32rpx;
+  line-height: 32rpx;
+}
+.order-state .order-sts.normal.data-v-df4e43d9 {
+  color: #333;
+}
+
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */

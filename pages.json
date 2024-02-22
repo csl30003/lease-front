@@ -149,6 +149,12 @@
 			}
 		},
 		{
+			"path": "pages/product/productSelectAddress",
+			"style": {
+				"navigationBarTitleText": "选择收货地址"
+			}
+		},
+		{
 			"path": "pages/chat/chatDetail",
 			"style": {
 				"navigationBarTitleText": "聊天详情"
@@ -164,6 +170,18 @@
 			"path": "pages/comment/commentDetail",
 			"style": {
 				"navigationBarTitleText": "评论详情"
+			}
+		},
+		{
+			"path": "pages/order/order",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/order/pendingPaymentOrder",
+			"style": {
+				"navigationBarTitleText": "待付款订单"
 			}
 		}
 	],

@@ -11,7 +11,7 @@
             </view>
             <radio-group class="radio-group">
                 <block v-for="(item, index) in addressList" :key="index">
-                    <view class="address" :data-addressid="item.id" @tap="toFillInformation">
+                    <view class="address" :data-addressid="item.id" @tap="toCheckOrder">
                         <view class="personal">
                             <view class="info-tit">
                                 <text class="name">
@@ -40,7 +40,10 @@ import { onShow, onLoad } from '@dcloudio/uni-app'
 import { getAddressAPI } from "@/api/address"
 
 const addressList = ref([])
-const categoryId = ref('')
+
+const productId = ref('')
+const quantity = ref('')
+const days = ref('')
 /**
  * 加载地址列表
  */
@@ -49,9 +52,9 @@ onShow(() => {
 })
 
 onLoad(async (options) => {
-    if (options.categoryId) {
-        categoryId.value = options.categoryId
-    }
+    productId.value = options.productId
+    quantity.value = options.quantity
+    days.value = options.days
 })
 
 /**
@@ -66,16 +69,16 @@ const onGetList = async () => {
     uni.hideLoading()
 }
 
-const toFillInformation = (e) => {
+const toCheckOrder = (e) => {
     // 获取地址id
     const addressId = e.currentTarget.dataset.addressid
     uni.navigateTo({
-		url: '/pages/release/fillInformation?categoryId=' + categoryId.value + '&addressId=' + addressId
+		url: '/pages/order/order?productId=' + productId.value + '&quantity=' + quantity.value + '&days=' + days.value + '&addressId=' + addressId
 	})
 }
 </script>
   
 <style scoped lang="scss">
-@use './selectAddress.scss';
+@use './productSelectAddress.scss';
 </style>
   

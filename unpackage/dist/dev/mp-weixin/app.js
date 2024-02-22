@@ -21,9 +21,12 @@ if (!Math) {
   "./pages/search/search.js";
   "./pages/search/searchProductShow.js";
   "./pages/product/product.js";
+  "./pages/product/productSelectAddress.js";
   "./pages/chat/chatDetail.js";
   "./pages/comment/comment.js";
   "./pages/comment/commentDetail.js";
+  "./pages/order/order.js";
+  "./pages/order/pendingPaymentOrder.js";
 }
 const _sfc_main = {
   __name: "App",
