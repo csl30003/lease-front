@@ -24,7 +24,10 @@
     "pages/comment/comment",
     "pages/comment/commentDetail",
     "pages/order/order",
-    "pages/order/pendingPaymentOrder"
+    "pages/order/pendingPaymentOrder",
+    "pages/webView/webView",
+    "pages/order/orderList",
+    "pages/order/orderDetail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -27,6 +27,9 @@ if (!Math) {
   "./pages/comment/commentDetail.js";
   "./pages/order/order.js";
   "./pages/order/pendingPaymentOrder.js";
+  "./pages/webView/webView.js";
+  "./pages/order/orderList.js";
+  "./pages/order/orderDetail.js";
 }
 const _sfc_main = {
   __name: "App",

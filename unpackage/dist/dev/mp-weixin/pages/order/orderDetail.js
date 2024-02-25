@@ -3,7 +3,7 @@ const common_vendor = require("../../common/vendor.js");
 const api_order = require("../../api/order.js");
 require("../../utils/http.js");
 const _sfc_main = {
-  __name: "pendingPaymentOrder",
+  __name: "orderDetail",
   setup(__props) {
     const orderId = common_vendor.ref(0);
     const order = common_vendor.ref({});
@@ -24,37 +24,8 @@ const _sfc_main = {
         url: "/pages/product/product?prodid=" + prodid
       });
     };
-    const toCancel = async () => {
-      const res = await common_vendor.index.showModal({
-        title: "取消订单",
-        content: "确定取消订单吗？",
-        showCancel: true,
-        cancelText: "取消",
-        confirmText: "确定"
-      });
-      if (res.confirm) {
-        const res2 = await api_order.cancelOrderAPI(orderId.value);
-        common_vendor.index.showToast({
-          title: res2.message,
-          icon: "none",
-          duration: 2e3
-        });
-        setTimeout(() => {
-          common_vendor.index.reLaunch({
-            url: "/pages/user/user"
-          });
-        }, 1e3);
-      }
-    };
-    const toPay = async () => {
-      const res = await api_order.alipayAPI(orderId.value);
-      let url = res.data;
-      common_vendor.index.navigateTo({
-        url: "/pages/webView/webView?url=" + encodeURIComponent(JSON.stringify(url))
-      });
-    };
     return (_ctx, _cache) => {
-      return common_vendor.e({
+      return {
         a: common_vendor.t(order.value.my_address_name),
         b: common_vendor.t(order.value.my_address_phone),
         c: common_vendor.t(order.value.my_address_province),
@@ -79,14 +50,10 @@ const _sfc_main = {
         w: common_vendor.t(paymentTypeValue.value),
         x: common_vendor.t(deliveryValue.value),
         y: common_vendor.t(order.value.actual_payment),
-        z: common_vendor.t(order.value.actual_payment),
-        A: order.value.status === 1
-      }, order.value.status === 1 ? {
-        B: common_vendor.o(toCancel),
-        C: common_vendor.o(toPay)
-      } : {});
+        z: common_vendor.t(order.value.actual_payment)
+      };
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-df4e43d9"], ["__file", "D:/HBuilderProjects/lease/pages/order/pendingPaymentOrder.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-6d7bb016"], ["__file", "D:/HBuilderProjects/lease/pages/order/orderDetail.vue"]]);
 wx.createPage(MiniProgramPage);

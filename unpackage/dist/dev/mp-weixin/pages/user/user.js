@@ -28,6 +28,12 @@ const _sfc_main = {
         url: "/pages/address/address"
       });
     };
+    const toOrderListPage = (e) => {
+      const sts = e.currentTarget.dataset.sts;
+      common_vendor.index.navigateTo({
+        url: "/pages/order/orderList?sts=" + sts
+      });
+    };
     const toEditUserAvatar = () => {
       common_vendor.index.navigateTo({
         url: "/pages/user/editUserAvatar"
@@ -83,27 +89,27 @@ const _sfc_main = {
         g: common_vendor.o(toLogin),
         h: common_vendor.o(toLogin)
       } : {}, {
-        i: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        i: common_vendor.o(toOrderListPage),
         j: common_assets._imports_0$1,
         k: orderAmount.value.unPay > 0
       }, orderAmount.value.unPay > 0 ? {
         l: common_vendor.t(orderAmount.value.unPay)
       } : {}, {
-        m: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        m: common_vendor.o(toOrderListPage),
         n: common_assets._imports_1,
         o: orderAmount.value.payed > 0
       }, orderAmount.value.payed > 0 ? {
         p: common_vendor.t(orderAmount.value.payed)
       } : {}, {
-        q: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        q: common_vendor.o(toOrderListPage),
         r: common_assets._imports_2,
         s: orderAmount.value.consignment > 0
       }, orderAmount.value.consignment > 0 ? {
         t: common_vendor.t(orderAmount.value.consignment)
       } : {}, {
-        v: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        v: common_vendor.o(toOrderListPage),
         w: common_assets._imports_3,
-        x: common_vendor.o((...args) => _ctx.toOrderListPage && _ctx.toOrderListPage(...args)),
+        x: common_vendor.o(toOrderListPage),
         y: loginResult.value
       }, loginResult.value ? {} : {}, {
         z: common_vendor.o((...args) => _ctx.myCollection && _ctx.myCollection(...args)),

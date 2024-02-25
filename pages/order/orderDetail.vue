@@ -138,21 +138,6 @@
                     </view>
                 </view>
             </view>
-
-            <!-- 底部栏 -->
-            <view v-if="order.status === 1" class="order-detail-footer">
-                <text class="button" @tap="toCancel">
-                    取消订单
-                </text>
-                <text class="button" @tap="toPay">
-                    付款
-                </text>
-            </view>
-            <view v-else class="order-detail-footer">
-                <text class="isPayButton">
-                    已支付
-                </text>
-            </view>
         </view>
     </view>
 </template>
@@ -160,7 +145,7 @@
 <script setup>
 import { ref } from 'vue'
 import { onShow, onLoad } from '@dcloudio/uni-app'
-import { getOrderAPI, cancelOrderAPI, alipayAPI } from "@/api/order"
+import { getOrderAPI } from "@/api/order"
 
 
 const orderId = ref(0) // 订单id
@@ -181,51 +166,14 @@ onShow(async () => {
     deliveryValue.value = res.data.delivery === 0 ? '邮寄' : '自提'
 })
 
-
-
 const toProdPage = (e) => {
     const prodid = e.currentTarget.dataset.prodid
     uni.navigateTo({
         url: '/pages/product/product?prodid=' + prodid
     })
 }
-
-const toCancel = async () => {
-    const res = await uni.showModal({
-        title: '取消订单',
-        content: '确定取消订单吗？',
-        showCancel: true,
-        cancelText: '取消',
-        confirmText: '确定'
-    })
-
-    if (res.confirm) {
-        const res = await cancelOrderAPI(orderId.value)
-
-        uni.showToast({
-            title: res.message,
-            icon: 'none',
-            duration: 2000
-        })
-
-        setTimeout(() => {
-            uni.reLaunch({
-                url: '/pages/user/user'
-            })
-        }, 1000)
-    }
-}
-
-const toPay = async () => {
-    const res = await alipayAPI(orderId.value)
-    let url = res.data
-
-    uni.navigateTo({
-        url: '/pages/webView/webView?url=' + encodeURIComponent(JSON.stringify(url)),
-    })
-}
 </script>
 
 <style scoped lang="scss">
-@use './pendingPaymentOrder.scss';
+@use './OrderDetail.scss';
 </style>

@@ -34,7 +34,7 @@
 					<text style="font-weight:bold">
 						我的订单
 					</text>
-					<view class="checkmore" data-sts="0" @tap="toOrderListPage">
+					<view class="checkmore" data-sts="10" @tap="toOrderListPage">
 						<text>查看全部</text>
 						<text class="arrowhead" />
 					</view>
@@ -47,21 +47,21 @@
 							{{ orderAmount.unPay }}
 						</text>
 					</view>
-					<view class="items" data-sts="2" @tap="toOrderListPage">
+					<view class="items" data-sts="3" @tap="toOrderListPage">
 						<image src="@/static/images/icon/toDelivery.png" />
-						<text>待发货</text>
+						<text>待收货</text>
 						<text v-if="orderAmount.payed > 0" class="num-badge">
 							{{ orderAmount.payed }}
 						</text>
 					</view>
-					<view class="items" data-sts="3" @tap="toOrderListPage">
+					<view class="items" data-sts="4" @tap="toOrderListPage">
 						<image src="@/static/images/icon/toTake.png" />
-						<text>待收货</text>
+						<text>待归还</text>
 						<text v-if="orderAmount.consignment > 0" class="num-badge">
 							{{ orderAmount.consignment }}
 						</text>
 					</view>
-					<view class="items" data-sts="5" @tap="toOrderListPage">
+					<view class="items" data-sts="8" @tap="toOrderListPage">
 						<image src="@/static/images/icon/toComment.png" />
 						<text>已完成</text>
 					</view>
@@ -163,12 +163,12 @@ const toAddressList = () => {
 	})
 }
 
-// const toOrderListPage = (e) => {
-// 	const sts = e.currentTarget.dataset.sts
-// 	uni.navigateTo({
-// 		url: '/pages/orderList/orderList?sts=' + sts
-// 	})
-// }
+const toOrderListPage = (e) => {
+	const sts = e.currentTarget.dataset.sts
+	uni.navigateTo({
+		url: '/pages/order/orderList?sts=' + sts
+	})
+}
 
 // /**
 //  * 我的收藏跳转

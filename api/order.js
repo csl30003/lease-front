@@ -21,3 +21,32 @@ export const cancelOrderAPI = (id) => {
         method: 'delete'
     })
 }
+
+export const alipayAPI = (id) => {
+    return http({
+        url: '/index/alipay/' + id,
+        method: 'get'
+    })
+}
+
+export const getMyOrderAPI = (data) => {
+    return http({
+        url: '/index/order/my',
+        method: 'get',
+        data
+    })
+}
+
+export const iReceiveOrderAPI = (id) => {
+    return http({
+        url: '/index/order/receive/my/' + id,
+        method: 'put'
+    })
+}
+
+export const iReturnOrderAPI = (id) => {
+    return http({
+        url: '/index/order/return/my/' + id,
+        method: 'put'
+    })
+}
