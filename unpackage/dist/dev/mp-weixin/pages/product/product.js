@@ -25,10 +25,9 @@ const _sfc_main = {
     };
     const addOrCannelCollection = async () => {
       common_vendor.index.showLoading();
-      const res = await api_collection.collectionAPI({
+      await api_collection.collectionAPI({
         product_id: parseInt(prodId)
       });
-      console.log(res);
       isCollection.value = !isCollection.value;
       common_vendor.index.hideLoading();
     };
@@ -185,6 +184,13 @@ const _sfc_main = {
       if (parseInt(loginResult.id) === userID.value) {
         common_vendor.index.showToast({
           title: "不能购买自己的商品",
+          icon: "none"
+        });
+        return;
+      }
+      if (status.value === 2) {
+        common_vendor.index.showToast({
+          title: "商品已下架，无法购买",
           icon: "none"
         });
         return;

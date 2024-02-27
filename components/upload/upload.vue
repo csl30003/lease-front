@@ -70,20 +70,7 @@ onMounted(() => { });
 </script>
 
 <style lang="scss" scoped>
-.content {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 300px;
-}
-
-.image {
-	height: 150px;
-	width: 150px;
-	box-shadow: 2px 2px 6px #b9aeae;
-	border-radius: 50%;
-	cursor: pointer;
-}
+@use './Upload.scss';
 </style>
 
 

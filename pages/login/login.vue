@@ -120,7 +120,7 @@ const login = async () => {
       complete: () => {
         setTimeout(() => {
           wx.switchTab({
-            url: '/pages/index/index'
+            url: '/pages/user/user'
           })
         }, 500)
       }

@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const api_order = require("../../api/order.js");
+const api_payment = require("../../api/payment.js");
 require("../../utils/http.js");
 const _sfc_main = {
   __name: "pendingPaymentOrder",
@@ -47,7 +48,7 @@ const _sfc_main = {
       }
     };
     const toPay = async () => {
-      const res = await api_order.alipayAPI(orderId.value);
+      const res = await api_payment.alipayAPI(orderId.value);
       let url = res.data;
       common_vendor.index.navigateTo({
         url: "/pages/webView/webView?url=" + encodeURIComponent(JSON.stringify(url))

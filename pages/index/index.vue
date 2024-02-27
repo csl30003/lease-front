@@ -15,20 +15,11 @@
 					类别
 				</button>
 			</view>
-
-			<view>
-				<view @tap="toPay">
-					<button>
-						支付
-					</button>
-				</view>
-			</view>
 		</view>
 	</view>
 </template>
 
 <script setup>
-import { alipayAPI } from "@/api/order"
 
 const toSearchPage = () => {
 	uni.navigateTo({
@@ -41,16 +32,6 @@ const toCategory = () => {
 		url: "/pages/category/category",
 	})
 }
-
-const toPay = async () => {
-	const res = await alipayAPI()
-	let url = res.data
-
-	uni.navigateTo({
-		url: '/pages/webView/webView?url=' + encodeURIComponent(JSON.stringify(url)),
-	})
-}
-
 </script>
 
 <style lang="scss" scoped>

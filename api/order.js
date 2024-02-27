@@ -22,13 +22,6 @@ export const cancelOrderAPI = (id) => {
     })
 }
 
-export const alipayAPI = (id) => {
-    return http({
-        url: '/index/alipay/' + id,
-        method: 'get'
-    })
-}
-
 export const getMyOrderAPI = (data) => {
     return http({
         url: '/index/order/my',
@@ -48,5 +41,55 @@ export const iReturnOrderAPI = (id) => {
     return http({
         url: '/index/order/return/my/' + id,
         method: 'put'
+    })
+}
+
+export const iSolveOrderAPI = (id) => {
+    return http({
+        url: '/index/order/solve/' + id,
+        method: 'put'
+    })
+}
+
+export const getMyReleaseOrderAPI = (data) => {
+    return http({
+        url: '/index/order/his',
+        method: 'get',
+        data
+    })
+}
+
+export const heDeliveryOrderAPI = (id) => {
+    return http({
+        url: '/index/order/delivery/his/' + id,
+        method: 'put'
+    })
+}
+
+export const heReceiveOrderAPI = (id) => {
+    return http({
+        url: '/index/order/receive/his/' + id,
+        method: 'put'
+    })
+}
+
+export const heInspectOrderHasProblemAPI = (id) => {
+    return http({
+        url: '/index/order/inspect/problem/his/' + id,
+        method: 'put'
+    })
+}
+
+export const heInspectOrderWithoutProblemAPI = (id) => {
+    return http({
+        url: '/index/order/inspect/ok/his/' + id,
+        method: 'put'
+    })
+}
+
+export const getOrderCountAPI = () => {
+    return http({
+        url: '/index/order/count',
+        method: 'get'
     })
 }

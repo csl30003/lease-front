@@ -175,5 +175,5 @@ const toProdPage = (e) => {
 </script>
 
 <style scoped lang="scss">
-@use './OrderDetail.scss';
+@use './orderDetail.scss';
 </style>

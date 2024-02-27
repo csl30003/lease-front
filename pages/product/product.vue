@@ -196,7 +196,6 @@ const addOrCannelCollection = async () => {
 	const res = await collectionAPI({
 		product_id: parseInt(prodId)
 	})
-	console.log(res);
 	isCollection.value = !isCollection.value
 	uni.hideLoading()
 }
@@ -389,6 +388,15 @@ const goToNextPage = () => {
 	if (parseInt(loginResult.id) === userID.value) {
 		uni.showToast({
 			title: '不能购买自己的商品',
+			icon: 'none'
+		})
+		return
+	}
+
+	// 不能购买已经下架了的商品
+	if (status.value === 2) {
+		uni.showToast({
+			title: '商品已下架，无法购买',
 			icon: 'none'
 		})
 		return

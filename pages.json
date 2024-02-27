@@ -194,13 +194,31 @@
 		{
 			"path": "pages/order/orderList",
 			"style": {
-				"navigationBarTitleText": "订单列表"
+				"navigationBarTitleText": "我租赁的订单列表"
 			}
 		},
 		{
 			"path": "pages/order/orderDetail",
 			"style": {
 				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/order/releaseOrderList",
+			"style": {
+				"navigationBarTitleText": "我发布的订单列表"
+			}
+		},
+		{
+			"path": "pages/collection/collection",
+			"style": {
+				"navigationBarTitleText": "收藏"
+			}
+		},
+		{
+			"path": "pages/wallet/wallet",
+			"style": {
+				"navigationBarTitleText": "钱包"
 			}
 		}
 	],

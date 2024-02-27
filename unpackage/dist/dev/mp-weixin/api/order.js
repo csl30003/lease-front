@@ -19,12 +19,6 @@ const cancelOrderAPI = (id) => {
     method: "delete"
   });
 };
-const alipayAPI = (id) => {
-  return utils_http.http({
-    url: "/index/alipay/" + id,
-    method: "get"
-  });
-};
 const getMyOrderAPI = (data) => {
   return utils_http.http({
     url: "/index/order/my",
@@ -44,10 +38,59 @@ const iReturnOrderAPI = (id) => {
     method: "put"
   });
 };
+const iSolveOrderAPI = (id) => {
+  return utils_http.http({
+    url: "/index/order/solve/" + id,
+    method: "put"
+  });
+};
+const getMyReleaseOrderAPI = (data) => {
+  return utils_http.http({
+    url: "/index/order/his",
+    method: "get",
+    data
+  });
+};
+const heDeliveryOrderAPI = (id) => {
+  return utils_http.http({
+    url: "/index/order/delivery/his/" + id,
+    method: "put"
+  });
+};
+const heReceiveOrderAPI = (id) => {
+  return utils_http.http({
+    url: "/index/order/receive/his/" + id,
+    method: "put"
+  });
+};
+const heInspectOrderHasProblemAPI = (id) => {
+  return utils_http.http({
+    url: "/index/order/inspect/problem/his/" + id,
+    method: "put"
+  });
+};
+const heInspectOrderWithoutProblemAPI = (id) => {
+  return utils_http.http({
+    url: "/index/order/inspect/ok/his/" + id,
+    method: "put"
+  });
+};
+const getOrderCountAPI = () => {
+  return utils_http.http({
+    url: "/index/order/count",
+    method: "get"
+  });
+};
 exports.addOrderAPI = addOrderAPI;
-exports.alipayAPI = alipayAPI;
 exports.cancelOrderAPI = cancelOrderAPI;
 exports.getMyOrderAPI = getMyOrderAPI;
+exports.getMyReleaseOrderAPI = getMyReleaseOrderAPI;
 exports.getOrderAPI = getOrderAPI;
+exports.getOrderCountAPI = getOrderCountAPI;
+exports.heDeliveryOrderAPI = heDeliveryOrderAPI;
+exports.heInspectOrderHasProblemAPI = heInspectOrderHasProblemAPI;
+exports.heInspectOrderWithoutProblemAPI = heInspectOrderWithoutProblemAPI;
+exports.heReceiveOrderAPI = heReceiveOrderAPI;
 exports.iReceiveOrderAPI = iReceiveOrderAPI;
 exports.iReturnOrderAPI = iReturnOrderAPI;
+exports.iSolveOrderAPI = iSolveOrderAPI;

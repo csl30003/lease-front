@@ -13,12 +13,15 @@ const _sfc_main = {
     });
     const principal = common_vendor.ref("");
     const credentials = common_vendor.ref("");
+    const confirmPassword = common_vendor.ref("");
     const getInputVal = (e) => {
       const type = e.currentTarget.dataset.type;
       if (type == "account") {
         principal.value = e.detail.value;
       } else if (type == "password") {
         credentials.value = e.detail.value;
+      } else if (type == "confirmPassword") {
+        confirmPassword.value = e.detail.value;
       }
     };
     const errorTips = common_vendor.ref(0);
@@ -27,8 +30,18 @@ const _sfc_main = {
         errorTips.value = 1;
       } else if (credentials.value.length == 0) {
         errorTips.value = 2;
+      } else if (confirmPassword.value.length == 0) {
+        errorTips.value = 3;
       } else {
         errorTips.value = 0;
+        if (credentials.value != confirmPassword.value) {
+          common_vendor.index.showToast({
+            title: "两次密码不一致",
+            icon: "none",
+            duration: 500
+          });
+          return;
+        }
         common_vendor.index.showLoading();
         await api_user.registerAPI({
           name: principal.value,
@@ -68,9 +81,13 @@ const _sfc_main = {
         f: errorTips.value == 2
       }, errorTips.value == 2 ? {} : {}, {
         g: common_vendor.n(errorTips.value == 2 ? "error" : ""),
-        h: common_vendor.o(toLogin),
-        i: common_vendor.o(toRegister),
-        j: common_vendor.o(toIndex)
+        h: common_vendor.o(getInputVal),
+        i: errorTips.value == 3
+      }, errorTips.value == 3 ? {} : {}, {
+        j: common_vendor.n(errorTips.value == 3 ? "error" : ""),
+        k: common_vendor.o(toLogin),
+        l: common_vendor.o(toRegister),
+        m: common_vendor.o(toIndex)
       });
     };
   }

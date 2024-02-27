@@ -13,5 +13,12 @@ const collectionAPI = (data) => {
     data
   });
 };
+const getCollectionAPI = () => {
+  return utils_http.http({
+    url: "/index/collection",
+    method: "get"
+  });
+};
 exports.collectionAPI = collectionAPI;
+exports.getCollectionAPI = getCollectionAPI;
 exports.isCollectionAPI = isCollectionAPI;

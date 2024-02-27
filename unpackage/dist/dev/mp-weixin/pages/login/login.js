@@ -52,7 +52,7 @@ const _sfc_main = {
           complete: () => {
             setTimeout(() => {
               common_vendor.wx$1.switchTab({
-                url: "/pages/index/index"
+                url: "/pages/user/user"
               });
             }, 500);
           }

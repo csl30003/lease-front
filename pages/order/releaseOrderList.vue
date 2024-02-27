@@ -9,22 +9,22 @@
                 已取消
             </text>
             <text data-sts="1" :class="sts == 1 ? 'on' : ''" @tap="onStsTap">
-                待支付
+                待对方支付
             </text>
             <text data-sts="2" :class="sts == 2 ? 'on' : ''" @tap="onStsTap">
-                待对方发货
+                待我方发货
             </text>
             <text data-sts="3" :class="sts == 3 ? 'on' : ''" @tap="onStsTap">
-                待我方收货
-            </text>
-            <text data-sts="4" :class="sts == 4 ? 'on' : ''" @tap="onStsTap">
-                待我方归还
-            </text>
-            <text data-sts="5" :class="sts == 5 ? 'on' : ''" @tap="onStsTap">
                 待对方收货
             </text>
+            <text data-sts="4" :class="sts == 4 ? 'on' : ''" @tap="onStsTap">
+                待对方归还
+            </text>
+            <text data-sts="5" :class="sts == 5 ? 'on' : ''" @tap="onStsTap">
+                待我方收货
+            </text>
             <text data-sts="6" :class="sts == 6 ? 'on' : ''" @tap="onStsTap">
-                待对方检查
+                待我方检查
             </text>
             <text data-sts="7" :class="sts == 7 ? 'on' : ''" @tap="onStsTap">
                 待共同解决
@@ -46,9 +46,11 @@
                         <text>订单编号：{{ item.identifier }}</text>
                         <view class="order-state">
                             <text
-                                :class="'order-sts  ' + (item.status == 1 || item.status == 3 || item.status == 4 || item.status == 7 ? 'red' : '') + '  ' + ((item.status == 8) ? 'gray' : '')">
+                                :class="'order-sts  ' + (item.status == 2 || item.status == 5 || item.status == 6 || item.status == 7 ? 'red' : '') + '  ' + ((item.status == 8) ? 'gray' : '')">
                                 {{
-                                    item.status == 0 ? '已取消' : (item.status == 1 ? '待支付' : (item.status == 2 ? '待对方发货' : (item.status == 3 ? '待我方收货' : (item.status == 4 ? '待我方归还' : (item.status == 5 ? '待对方收货' : (item.status == 6 ? '待对方检查' : (item.status == 7 ? '待共同解决' : '已完成')))))))
+                                    item.status == 0 ? '已取消' : (item.status == 1 ? '待对方支付' : (item.status == 2 ? '待我方发货' :
+                                        (item.status == 3 ? '待对方收货' : (item.status == 4 ? '待对方归还' : (item.status == 5 ? '待我方收货' :
+                                            (item.status == 6 ? '待我方检查' : (item.status == 7 ? '待共同解决' : '已完成')))))))
                                 }}
                             </text>
                         </view>
@@ -101,24 +103,20 @@
 
                     <view class="prod-foot">
                         <view class="btn">
-                            <text v-if="item.status == 1" class="button" :data-id="item.id"
-                                hover-class="none" @tap="onCancelOrder">
-                                取消订单
+                            <text v-if="item.status == 2" class="button warn" :data-id="item.id" hover-class="none"
+                                @tap="toDelivery">
+                                确认发货
                             </text>
-                            <text v-if="item.status == 1" class="button warn" :data-id="item.id"
-                                hover-class="none" @tap="normalPay">
-                                付款
-                            </text>
-                            <text v-if="item.status == 3" class="button warn" :data-id="item.id"
-                                hover-class="none" @tap="onConfirmReceive">
+                            <text v-if="item.status == 5" class="button warn" :data-id="item.id" hover-class="none"
+                                @tap="onConfirmReceive">
                                 确认收货
                             </text>
-                            <text v-if="item.status == 4" class="button warn"
-                                :data-id="item.id" hover-class="none" @tap="toReturn">
-                                确认归还
+                            <text v-if="item.status == 6" class="button warn" :data-id="item.id" hover-class="none"
+                                @tap="onInspect">
+                                检查完毕
                             </text>
-                            <text v-if="item.status == 7" class="button warn"
-                                :data-id="item.id" hover-class="none" @tap="toComplete">
+                            <text v-if="item.status == 7" class="button warn" :data-id="item.id" hover-class="none"
+                                @tap="toComplete">
                                 我已解决
                             </text>
                         </view>
@@ -133,7 +131,7 @@
 <script setup>
 import { ref } from 'vue'
 import { onLoad, onReachBottom } from '@dcloudio/uni-app'
-import { getMyOrderAPI, iReceiveOrderAPI, iReturnOrderAPI, iSolveOrderAPI } from "@/api/order"
+import { getMyReleaseOrderAPI, heDeliveryOrderAPI, heReceiveOrderAPI, heInspectOrderHasProblemAPI, heInspectOrderWithoutProblemAPI, iSolveOrderAPI } from "@/api/order"
 
 const sts = ref(0)
 /**
@@ -166,7 +164,7 @@ const orderList = ref([])
  * 加载订单数据
  */
 const loadOrderData = async (sts, currentParam) => {
-    const res = await getMyOrderAPI({
+    const res = await getMyReleaseOrderAPI({
         current: currentParam,
         size: 10,
         status: sts
@@ -193,25 +191,6 @@ const onStsTap = (e) => {
 }
 
 /**
- * 取消订单
- */
-const onCancelOrder = (e) => {
-    uni.navigateTo({
-		url: '/pages/order/pendingPaymentOrder?orderId=' + e.currentTarget.dataset.id
-	})
-}
-
-/**
- * 前往支付
- * @param e
- */
-const normalPay = (e) => {
-    uni.navigateTo({
-		url: '/pages/order/pendingPaymentOrder?orderId=' + e.currentTarget.dataset.id
-	})
-}
-
-/**
  * 查看订单详情
  */
 const toOrderDetailPage = (e) => {
@@ -221,17 +200,17 @@ const toOrderDetailPage = (e) => {
 }
 
 /**
- * 确认收货
+ * 确认发货
  */
-const onConfirmReceive = async (e) => {
+const toDelivery = (e) => {
     uni.showModal({
         title: '',
-        content: '我已收到货？',
+        content: '确定已经发货了吗？',
         confirmColor: '#eb2444',
 
         async success(res) {
             if (res.confirm) {
-                const res = await iReceiveOrderAPI(e.currentTarget.dataset.id)
+                const res = await heDeliveryOrderAPI(e.currentTarget.dataset.id)
                 loadOrderData(sts.value, 1)
             }
         }
@@ -239,17 +218,37 @@ const onConfirmReceive = async (e) => {
 }
 
 /**
- * 确认归还
+ * 确认收货
  */
-const toReturn = async (e) => {
+const onConfirmReceive = async (e) => {
     uni.showModal({
         title: '',
-        content: '我已归还商品？',
+        content: '我已收到顾客归还的商品？',
         confirmColor: '#eb2444',
 
         async success(res) {
             if (res.confirm) {
-                const res = await iReturnOrderAPI(e.currentTarget.dataset.id)
+                const res = await heReceiveOrderAPI(e.currentTarget.dataset.id)
+                loadOrderData(sts.value, 1)
+            }
+        }
+    })
+}
+
+/**
+ * 检查完毕
+ */
+const onInspect = (e) => {
+    uni.showActionSheet({
+        itemList: ['无问题，订单完成', '有问题，需要双方协商解决'],
+        async success(res) {
+            if (res.tapIndex === 1) {
+                // 订单进入状态7
+                const res = await heInspectOrderHasProblemAPI(e.currentTarget.dataset.id)
+                loadOrderData(sts.value, 1)
+            } else if (res.tapIndex === 0) {
+                // 订单进入状态8
+                const res = await heInspectOrderWithoutProblemAPI(e.currentTarget.dataset.id)
                 loadOrderData(sts.value, 1)
             }
         }
@@ -293,6 +292,6 @@ const toComplete = async (e) => {
 </script>
   
 <style scoped lang="scss">
-@use './orderList.scss';
+@use './releaseOrderList.scss';
 </style>
   

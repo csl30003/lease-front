@@ -30,6 +30,9 @@ if (!Math) {
   "./pages/webView/webView.js";
   "./pages/order/orderList.js";
   "./pages/order/orderDetail.js";
+  "./pages/order/releaseOrderList.js";
+  "./pages/collection/collection.js";
+  "./pages/wallet/wallet.js";
 }
 const _sfc_main = {
   __name: "App",

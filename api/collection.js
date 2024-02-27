@@ -15,3 +15,10 @@ export const collectionAPI = (data) => {
         data: data
     })
 }
+
+export const getCollectionAPI = () => {
+    return http({
+        url: '/index/collection',
+        method: 'get'
+    })
+}

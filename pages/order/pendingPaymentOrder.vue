@@ -160,7 +160,8 @@
 <script setup>
 import { ref } from 'vue'
 import { onShow, onLoad } from '@dcloudio/uni-app'
-import { getOrderAPI, cancelOrderAPI, alipayAPI } from "@/api/order"
+import { getOrderAPI, cancelOrderAPI } from "@/api/order"
+import { alipayAPI } from "@/api/payment"
 
 
 const orderId = ref(0) // 订单id

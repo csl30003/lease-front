@@ -27,7 +27,10 @@
     "pages/order/pendingPaymentOrder",
     "pages/webView/webView",
     "pages/order/orderList",
-    "pages/order/orderDetail"
+    "pages/order/orderDetail",
+    "pages/order/releaseOrderList",
+    "pages/collection/collection",
+    "pages/wallet/wallet"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -19,6 +19,7 @@
                         请输入账号！
                     </view>
                 </view>
+
                 <view :class="['item', errorTips == 2 ? 'error' : '']">
                     <view class="account">
                         <text class="input-item">
@@ -34,6 +35,23 @@
                         请输入密码！
                     </view>
                 </view>
+
+                <view :class="['item', errorTips == 3 ? 'error' : '']">
+                    <view class="account">
+                        <text class="input-item">
+                            确认密码
+                        </text>
+                        <input type="password" data-type="confirmPassword" placeholder-class="inp-palcehoder" placeholder="请确认密码"
+                            @input="getInputVal">
+                    </view>
+                    <view v-if="errorTips == 3" class="error-text">
+                        <text class="warning-icon">
+                            !
+                        </text>
+                        请输入密码！
+                    </view>
+                </view>
+
                 <view class="operate">
                     <view class="to-register" @tap="toLogin">
                         已有账号？
@@ -70,6 +88,7 @@ onShow(() => {
 
 const principal = ref('') // 账号
 const credentials = ref('') // 密码
+const confirmPassword = ref('') // 确认密码
 /**
  * 输入框的值
  */
@@ -79,6 +98,8 @@ const getInputVal = (e) => {
         principal.value = e.detail.value
     } else if (type == 'password') {
         credentials.value = e.detail.value
+    } else if (type == 'confirmPassword') {
+        confirmPassword.value = e.detail.value
     }
 }
 
@@ -91,8 +112,19 @@ const toRegister = async () => {
         errorTips.value = 1
     } else if (credentials.value.length == 0) {
         errorTips.value = 2
+    } else if (confirmPassword.value.length == 0) {
+        errorTips.value = 3
     } else {
         errorTips.value = 0
+        
+        if (credentials.value != confirmPassword.value) {
+            uni.showToast({
+                title: '两次密码不一致',
+                icon: 'none',
+                duration: 500
+            })
+            return
+        }
 
         uni.showLoading()
         let res = await registerAPI({
