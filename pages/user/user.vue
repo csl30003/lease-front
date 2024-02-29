@@ -271,18 +271,9 @@ const toWallet = () => {
  * 去登陆
  */
 const toLogin = () => {
-	uni.showModal({
-		title: "提示",
-		content: "请登录",
-		showCancel: false,
-		success(res) {
-			setTimeout(() => {
-				uni.navigateTo({
-					url: "/pages/login/login",
-				})
-			}, 500);
-		},
-	});
+	uni.navigateTo({
+		url: "/pages/login/login",
+	})
 }
 
 /**

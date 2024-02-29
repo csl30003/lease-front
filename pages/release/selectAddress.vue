@@ -58,12 +58,8 @@ onLoad(async (options) => {
  * 获取收获列表接口
  */
 const onGetList = async () => {
-    uni.showLoading()
-
     let res = await getAddressAPI()
     addressList.value = res.data
-
-    uni.hideLoading()
 }
 
 const toFillInformation = (e) => {

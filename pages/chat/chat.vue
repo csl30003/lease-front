@@ -48,6 +48,8 @@ onShow(async () => {
 const toLoadData = async () => {
     isLoaded.value = false
 
+	chatUserList.value = []
+
     const res = await getChatUserAPI()
 
 	chatUserList.value = res.data

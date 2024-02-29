@@ -16,10 +16,8 @@ const _sfc_main = {
       }
     });
     const onGetList = async () => {
-      common_vendor.index.showLoading();
       let res = await api_address.getAddressAPI();
       addressList.value = res.data;
-      common_vendor.index.hideLoading();
     };
     const toFillInformation = (e) => {
       const addressId = e.currentTarget.dataset.addressid;

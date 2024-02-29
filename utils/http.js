@@ -34,13 +34,15 @@ export default (params) => {
                             uni.showModal({
                                 title: "提示",
                                 content: "请登录",
-                                showCancel: false,
+                                showCancel: true,
                                 success(res) {
-                                    setTimeout(() => {
-                                        uni.navigateTo({
-                                            url: "/pages/login/login",
-                                        })
-                                    }, 1000);
+                                    if (res.confirm) {
+                                        setTimeout(() => {
+                                            uni.navigateTo({
+                                                url: "/pages/login/login",
+                                            })
+                                        }, 1000);
+                                    }
                                 },
                             });
                             break;

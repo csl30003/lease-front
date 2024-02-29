@@ -8,11 +8,11 @@ const _sfc_main = {
   setup(__props) {
     const parentId = common_vendor.ref("");
     const categoryId = common_vendor.ref(0);
-    common_vendor.onLoad((options) => {
+    common_vendor.onLoad(async (options) => {
       parentId.value = options.parentId;
       categoryId.value = options.categoryId;
-      getSubCategory();
-      getProdList();
+      await getSubCategory();
+      await getProdList();
     });
     const current = common_vendor.ref(1);
     const pages = common_vendor.ref(0);
@@ -27,6 +27,12 @@ const _sfc_main = {
     const getSubCategory = async () => {
       const res = await api_category.getCategoryAPI(parentId.value);
       subCategoryList.value = res.data;
+      if (res.data.length === 0) {
+        return;
+      }
+      if (categoryId.value === "0") {
+        categoryId.value = subCategoryList.value[0].id;
+      }
       common_vendor.nextTick$1(() => {
         intoView.value = "sw" + categoryId.value;
       });

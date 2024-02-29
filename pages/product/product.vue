@@ -172,8 +172,8 @@ let prodId = 0
 onLoad(async (options) => {
 	prodId = options.prodid// 加载商品ID
 	await getProdInfo() // 加载商品数据
-	await getCollection() // 查看用户是否收藏
 	await getComments() // 加载评论
+	await getCollection() // 查看用户是否收藏
 })
 
 const isCollection = ref(false)
@@ -181,23 +181,19 @@ const isCollection = ref(false)
  * 获取是否收藏信息
  */
 const getCollection = async () => {
-	uni.showLoading()
 	const res = await isCollectionAPI(prodId)
 
 	isCollection.value = res.data
-	uni.hideLoading()
 }
 
 /**
  * 添加或者取消收藏商品
  */
 const addOrCannelCollection = async () => {
-	uni.showLoading()
 	const res = await collectionAPI({
 		product_id: parseInt(prodId)
 	})
 	isCollection.value = !isCollection.value
-	uni.hideLoading()
 }
 
 const name = ref('') // 商品名称
@@ -273,13 +269,15 @@ const toChat = async () => {
 		uni.showModal({
 			title: "提示",
 			content: "请登录",
-			showCancel: false,
+			showCancel: true,
 			success(res) {
-				setTimeout(() => {
-					uni.navigateTo({
-						url: "/pages/login/login",
-					})
-				}, 1000);
+				if (res.confirm) {
+					setTimeout(() => {
+						uni.navigateTo({
+							url: "/pages/login/login",
+						})
+					}, 1000);
+				}
 			},
 		});
 		return

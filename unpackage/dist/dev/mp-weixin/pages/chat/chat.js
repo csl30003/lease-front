@@ -12,6 +12,7 @@ const _sfc_main = {
     });
     const toLoadData = async () => {
       isLoaded.value = false;
+      chatUserList.value = [];
       const res = await api_chat.getChatUserAPI();
       chatUserList.value = res.data;
       isLoaded.value = true;

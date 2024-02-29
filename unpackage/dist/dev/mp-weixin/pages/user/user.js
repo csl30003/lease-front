@@ -68,17 +68,8 @@ const _sfc_main = {
       });
     };
     const toLogin = () => {
-      common_vendor.index.showModal({
-        title: "提示",
-        content: "请登录",
-        showCancel: false,
-        success(res) {
-          setTimeout(() => {
-            common_vendor.index.navigateTo({
-              url: "/pages/login/login"
-            });
-          }, 500);
-        }
+      common_vendor.index.navigateTo({
+        url: "/pages/login/login"
       });
     };
     const logout = async () => {

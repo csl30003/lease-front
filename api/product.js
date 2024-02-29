@@ -25,7 +25,7 @@ export const getMyProductAPI = (status) => {
 
 export const getProductListAPI = (data) => {
     return http({
-        url: '/index/product/list',
+        url: '/product/list',
         method: 'get',
         data: data
     })
@@ -33,7 +33,7 @@ export const getProductListAPI = (data) => {
 
 export const getProductAPI = (id) => {
     return http({
-        url: '/index/product/' + id,
+        url: '/product/' + id,
         method: 'get',
     })
 }

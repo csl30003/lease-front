@@ -56,11 +56,12 @@ const categoryId = ref(0)
 /**
  * 生命周期函数--监听页面加载
  */
-onLoad((options) => {
+onLoad(async (options) => {
     parentId.value = options.parentId
     categoryId.value = options.categoryId
-    getSubCategory()
-    getProdList()
+    await getSubCategory()
+
+    await getProdList()
 })
 
 const current = ref(1)
@@ -84,6 +85,14 @@ const getSubCategory = async () => {
     const res = await getCategoryAPI(parentId.value)
 
     subCategoryList.value = res.data
+    if (res.data.length === 0) {
+        return
+    }
+
+    if (categoryId.value === '0') {
+        categoryId.value = subCategoryList.value[0].id
+    }
+
     nextTick(() => {
         intoView.value = 'sw' + categoryId.value
     })

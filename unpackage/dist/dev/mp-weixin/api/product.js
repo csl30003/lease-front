@@ -22,14 +22,14 @@ const getMyProductAPI = (status) => {
 };
 const getProductListAPI = (data) => {
   return utils_http.http({
-    url: "/index/product/list",
+    url: "/product/list",
     method: "get",
     data
   });
 };
 const getProductAPI = (id) => {
   return utils_http.http({
-    url: "/index/product/" + id,
+    url: "/product/" + id,
     method: "get"
   });
 };

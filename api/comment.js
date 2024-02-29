@@ -2,21 +2,21 @@ import http from '@/utils/http'
 
 export const getTwoCommentAPI = (productId) => {
     return http({
-        url: '/index/comment/two/' + productId,
+        url: '/comment/two/' + productId,
         method: 'get',
     })
 }
 
 export const getRootCommentAPI = (productId) => {
     return http({
-        url: '/index/comment/root/' + productId,
+        url: '/comment/root/' + productId,
         method: 'get',
     })
 }
 
 export const getCommentListAPI = (commentId) => {
     return http({
-        url: '/index/comment/list/' + commentId,
+        url: '/comment/list/' + commentId,
         method: 'get',
     })
 }

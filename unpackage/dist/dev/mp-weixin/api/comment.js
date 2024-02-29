@@ -2,19 +2,19 @@
 const utils_http = require("../utils/http.js");
 const getTwoCommentAPI = (productId) => {
   return utils_http.http({
-    url: "/index/comment/two/" + productId,
+    url: "/comment/two/" + productId,
     method: "get"
   });
 };
 const getRootCommentAPI = (productId) => {
   return utils_http.http({
-    url: "/index/comment/root/" + productId,
+    url: "/comment/root/" + productId,
     method: "get"
   });
 };
 const getCommentListAPI = (commentId) => {
   return utils_http.http({
-    url: "/index/comment/list/" + commentId,
+    url: "/comment/list/" + commentId,
     method: "get"
   });
 };

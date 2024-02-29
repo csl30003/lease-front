@@ -13,23 +13,19 @@ const _sfc_main = {
     common_vendor.onLoad(async (options) => {
       prodId = options.prodid;
       await getProdInfo();
-      await getCollection();
       await getComments();
+      await getCollection();
     });
     const isCollection = common_vendor.ref(false);
     const getCollection = async () => {
-      common_vendor.index.showLoading();
       const res = await api_collection.isCollectionAPI(prodId);
       isCollection.value = res.data;
-      common_vendor.index.hideLoading();
     };
     const addOrCannelCollection = async () => {
-      common_vendor.index.showLoading();
       await api_collection.collectionAPI({
         product_id: parseInt(prodId)
       });
       isCollection.value = !isCollection.value;
-      common_vendor.index.hideLoading();
     };
     const name = common_vendor.ref("");
     const price = common_vendor.ref(0);
@@ -96,13 +92,15 @@ const _sfc_main = {
         common_vendor.index.showModal({
           title: "提示",
           content: "请登录",
-          showCancel: false,
+          showCancel: true,
           success(res) {
-            setTimeout(() => {
-              common_vendor.index.navigateTo({
-                url: "/pages/login/login"
-              });
-            }, 1e3);
+            if (res.confirm) {
+              setTimeout(() => {
+                common_vendor.index.navigateTo({
+                  url: "/pages/login/login"
+                });
+              }, 1e3);
+            }
           }
         });
         return;

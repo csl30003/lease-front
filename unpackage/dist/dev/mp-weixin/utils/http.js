@@ -31,13 +31,15 @@ const http = (params) => {
               common_vendor.index.showModal({
                 title: "提示",
                 content: "请登录",
-                showCancel: false,
+                showCancel: true,
                 success(res2) {
-                  setTimeout(() => {
-                    common_vendor.index.navigateTo({
-                      url: "/pages/login/login"
-                    });
-                  }, 1e3);
+                  if (res2.confirm) {
+                    setTimeout(() => {
+                      common_vendor.index.navigateTo({
+                        url: "/pages/login/login"
+                      });
+                    }, 1e3);
+                  }
                 }
               });
               break;
