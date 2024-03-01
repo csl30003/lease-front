@@ -31,7 +31,7 @@
   position: absolute;
   right: 30rpx;
   top: 31rpx;
-  color: #eb2444;
+  color: #007aff;
 }
 .sear-input.data-v-c10c040c {
   height: 60rpx;

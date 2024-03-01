@@ -82,7 +82,7 @@
 .binding-phone .gotobinding.data-v-0f7520f0 {
   border-radius: 8rpx;
   font-size: 28rpx;
-  color: #e24b4b;
+  color: #007aff;
   font-weight: bold;
 }
 .list-cont.data-v-0f7520f0 {
@@ -209,7 +209,7 @@
   width: 200rpx;
   padding: 20rpx;
   border-radius: 10rpx;
-  background: #e43130;
+  background: #007aff;
   color: #ffffff;
 }
 button.memu-btn.memu-item.data-v-0f7520f0 {
@@ -217,6 +217,10 @@ button.memu-btn.memu-item.data-v-0f7520f0 {
 }
 button.memu-btn.memu-item.data-v-0f7520f0:after {
   border: 0;
+}
+.img.data-v-0f7520f0 {
+  width: 70rpx;
+  height: 70rpx;
 }
 
 /**

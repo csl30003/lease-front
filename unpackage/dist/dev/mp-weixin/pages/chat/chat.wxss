@@ -62,7 +62,7 @@
 }
 .prod-list .cont-item .show-item .prod-text-right .go-to-buy.data-v-0a633310 {
   font-size: 26rpx;
-  background: #eb2444;
+  background: #007aff;
   color: #fff;
   border-radius: 50rpx;
   width: 150rpx;

@@ -170,7 +170,7 @@
   line-height: 100rpx;
 }
 .price.data-v-946a9793 {
-  color: #eb2444;
+  color: #007aff;
   font-size: 24rpx;
   font-weight: 600;
   margin-right: 30rpx;
@@ -237,7 +237,7 @@
   width: 300rpx;
 }
 .cmt-good.data-v-946a9793 {
-  color: #eb2444;
+  color: #007aff;
   font-size: 24rpx;
 }
 .cmt-count.data-v-946a9793 {
@@ -278,7 +278,7 @@
 }
 .cmt-tag text.selected.data-v-946a9793 {
   color: #fff;
-  background: #e93b3d;
+  background: #007aff;
 }
 .cmt-item.data-v-946a9793 {
   position: relative;
@@ -411,7 +411,7 @@
   padding: 5px 0;
 }
 .cmt-reply .reply-tit.data-v-946a9793 {
-  color: #eb2444;
+  color: #007aff;
 }
 .prod-detail.data-v-946a9793 {
   background: #fff;
@@ -460,7 +460,7 @@ rich-text image.data-v-946a9793 {
   width: 28rpx;
   height: 28rpx;
   border-radius: 14rpx;
-  background-color: #eb2444;
+  background-color: #007aff;
   text-align: center;
   line-height: 28rpx;
   font-size: 18rpx;
@@ -485,7 +485,7 @@ rich-text image.data-v-946a9793 {
   color: #fff;
 }
 .cart-footer .btn.buy.data-v-946a9793 {
-  background: #eb2444;
+  background: #007aff;
   color: #fff;
 }
 .close.data-v-946a9793 {
@@ -549,7 +549,7 @@ rich-text image.data-v-946a9793 {
   display: inline-block;
   height: 40px;
   line-height: 40px;
-  color: #e4393c;
+  color: #007aff;
   font-size: 10px;
 }
 .pup-sku-price-int.data-v-946a9793 {
@@ -605,7 +605,7 @@ rich-text image.data-v-946a9793 {
   font-size: 14px;
 }
 .sku-choose-item.active.data-v-946a9793 {
-  background-color: #eb2444;
+  background-color: #007aff;
   color: #fff;
 }
 .sku-choose-item.gray.data-v-946a9793 {
@@ -717,7 +717,7 @@ rich-text image.data-v-946a9793 {
   color: #fff;
 }
 .pup-sku-footer .btn.buy.data-v-946a9793 {
-  background: #eb2444;
+  background: #007aff;
   color: #fff;
 }
 .sku-modal.data-v-946a9793 {

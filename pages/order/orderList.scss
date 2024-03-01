@@ -22,8 +22,8 @@
   }
 
   text.on {
-    border-bottom: 4rpx solid #eb2444;
-    color: #eb2444;
+    border-bottom: 4rpx solid #007aff;
+    color: #007aff;
   }
 }
 
@@ -195,7 +195,7 @@
   font-size: 24rpx;
 
   .order-sts.red {
-    color: #eb2444;
+    color: #007aff;
   }
 
   .order-sts.gray {
@@ -208,7 +208,7 @@
 }
 
 .button-hover {
-  background-color: red;
+  background-color: #007aff;
   background-color: blue;
 }
 
@@ -228,8 +228,8 @@
 }
 
 .button.warn {
-  color: #eb2444;
-  border-color: #eb2444;
+  color: #007aff;
+  border-color: #007aff;
 }
 
 .empty {

@@ -42,28 +42,28 @@
 				</view>
 				<view class="procedure">
 					<view class="items" data-sts="1" @tap="toOrderListPage1">
-						<image src="@/static/images/icon/toPay.png" />
+						<image src="@/static/images/icon/pay.png" />
 						<text>待支付</text>
 						<text v-if="myOrderCount.status1 > 0" class="num-badge">
 							{{ myOrderCount.status1 }}
 						</text>
 					</view>
 					<view class="items" data-sts="3" @tap="toOrderListPage1">
-						<image src="@/static/images/icon/toDelivery.png" />
+						<image src="@/static/images/icon/receive.png" />
 						<text>待收货</text>
 						<text v-if="myOrderCount.status3 > 0" class="num-badge">
 							{{ myOrderCount.status3 }}
 						</text>
 					</view>
 					<view class="items" data-sts="4" @tap="toOrderListPage1">
-						<image src="@/static/images/icon/toTake.png" />
+						<image src="@/static/images/icon/return.png" />
 						<text>待归还</text>
 						<text v-if="myOrderCount.status4 > 0" class="num-badge">
 							{{ myOrderCount.status4 }}
 						</text>
 					</view>
 					<view class="items" data-sts="7" @tap="toOrderListPage1">
-						<image src="@/static/images/icon/toComment.png" />
+						<image src="@/static/images/icon/complete.png" />
 						<text>待解决</text>
 						<text v-if="myOrderCount.status7 > 0" class="num-badge">
 							{{ myOrderCount.status7 }}
@@ -85,28 +85,28 @@
 				</view>
 				<view class="procedure">
 					<view class="items" data-sts="2" @tap="toOrderListPage2">
-						<image src="@/static/images/icon/toPay.png" />
+						<image src="@/static/images/icon/deliver.png" />
 						<text>待发货</text>
 						<text v-if="hisOrderCount.status2 > 0" class="num-badge">
 							{{ hisOrderCount.status2 }}
 						</text>
 					</view>
 					<view class="items" data-sts="5" @tap="toOrderListPage2">
-						<image src="@/static/images/icon/toDelivery.png" />
+						<image src="@/static/images/icon/receive.png" />
 						<text>待收货</text>
 						<text v-if="hisOrderCount.status5 > 0" class="num-badge">
 							{{ hisOrderCount.status5 }}
 						</text>
 					</view>
 					<view class="items" data-sts="6" @tap="toOrderListPage2">
-						<image src="@/static/images/icon/toTake.png" />
+						<image src="@/static/images/icon/check.png" />
 						<text>待检查</text>
 						<text v-if="hisOrderCount.status6 > 0" class="num-badge">
 							{{ hisOrderCount.status6 }}
 						</text>
 					</view>
 					<view class="items" data-sts="7" @tap="toOrderListPage2">
-						<image src="@/static/images/icon/toComment.png" />
+						<image src="@/static/images/icon/complete.png" />
 						<text>待解决</text>
 						<text v-if="hisOrderCount.status7 > 0" class="num-badge">
 							{{ hisOrderCount.status7 }}
@@ -119,7 +119,7 @@
 			<view class="prod-col">
 				<view class="col-item" @tap="myProduct">
 					<view v-if="loginResult" class="num">
-
+						<image class="img" src="@/static/images/icon/up.png" />
 					</view>
 					<view v-else class="num">
 						--
@@ -131,7 +131,7 @@
 
 				<view class="col-item" @tap="myDelistedProduct">
 					<view v-if="loginResult" class="num">
-
+						<image class="img" src="@/static/images/icon/down.png" />
 					</view>
 					<view v-else class="num">
 						--
@@ -143,7 +143,7 @@
 
 				<view class="col-item" @tap="myCollection">
 					<view v-if="loginResult" class="num">
-
+						<image class="img" src="@/static/images/icon/collection.png" />
 					</view>
 					<view v-else class="num">
 						--
@@ -155,7 +155,7 @@
 
 				<view class="col-item" @tap="toAddressList">
 					<view v-if="loginResult" class="num">
-
+						<image class="img" src="@/static/images/icon/address.png" />
 					</view>
 					<view v-else class="num">
 						--
@@ -167,7 +167,7 @@
 
 				<view class="col-item" @tap="toWallet">
 					<view v-if="loginResult" class="num">
-
+						<image class="img" src="@/static/images/icon/wallet.png" />
 					</view>
 					<view v-else class="num">
 						--

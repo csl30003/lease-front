@@ -1,6 +1,6 @@
 <template>
   <view class="con">
-    <image src="@/static/logo.png" />
+    <image src="@/static/images/icon/login.png" />
     <!-- 登录 -->
     <view class="login-form">
       <view :class="['item', errorTips == 1 ? 'error' : '']">

@@ -47,8 +47,8 @@
   height: calc(100vh - 100rpx);
 }
 .on.data-v-a26333d7 {
-  border-bottom: 4rpx solid #e43130;
-  color: #e43130;
+  border-bottom: 4rpx solid #007aff;
+  color: #007aff;
 }
 .data-v-a26333d7::-webkit-scrollbar {
   width: 0;
@@ -106,7 +106,7 @@
 .prod-items .hot-text .prod-text-info .hotprod-price.data-v-a26333d7 {
   display: inline;
   font-size: 26rpx;
-  color: #eb2444;
+  color: #007aff;
 }
 .prod-items .hot-text .prod-text-info .basket-img.data-v-a26333d7 {
   width: 50rpx;

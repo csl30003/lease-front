@@ -111,13 +111,13 @@
   border-radius: 15rpx;
   width: 30rpx;
   height: 30rpx;
-  background: red;
+  background: 7aff;
   color: #fff;
   font-size: 25rpx;
   line-height: 30rpx;
 }
 .menu-item.active.data-v-8145b772 {
-  color: #eb2444;
+  color: #007aff;
   font-size: 28rpx;
   font-weight: bold;
   position: relative;
@@ -130,7 +130,7 @@
   width: 8rpx;
   height: 32rpx;
   top: 29rpx;
-  background: #eb2444;
+  background: #007aff;
 }
 .rightcontent.data-v-8145b772 {
   width: 550rpx;
@@ -216,7 +216,7 @@
 }
 .rightcontent .cont-item .show-item .prod-text-right .prod-price.more.data-v-8145b772 {
   font-size: 28rpx;
-  color: #eb2444;
+  color: #007aff;
   font-family: arial;
 }
 .th-cate-con.data-v-8145b772 {

@@ -9,7 +9,7 @@
 import { ref, onMounted } from 'vue';
 
 const props = defineProps(['count']);
-const tempFilePaths = ref('/static/images/icon/plus-sign.png');
+const tempFilePaths = ref('/static/images/icon/add.png');
 
 const temp = ref(false);
 

@@ -5,7 +5,7 @@ const _sfc_main = {
   props: ["count"],
   setup(__props, { expose }) {
     const props = __props;
-    const tempFilePaths = common_vendor.ref("/static/images/icon/plus-sign.png");
+    const tempFilePaths = common_vendor.ref("/static/images/icon/add.png");
     const temp = common_vendor.ref(false);
     function chooseImage() {
       common_vendor.index.chooseImage({

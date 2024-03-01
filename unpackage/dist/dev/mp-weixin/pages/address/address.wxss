@@ -67,7 +67,7 @@
 }
 .footer text.data-v-40ca010a {
   font-size: 32rpx;
-  color: #eb2444;
+  color: #007aff;
 }
 .empty .img.data-v-40ca010a {
   text-align: center;

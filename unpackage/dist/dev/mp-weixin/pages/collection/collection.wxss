@@ -45,7 +45,7 @@
   font-family: Arial;
 }
 .prod-list .prod-items .hot-text .prod-text-info .price.data-v-cd17183b {
-  color: #eb2444;
+  color: #007aff;
   padding-left: 20rpx;
 }
 

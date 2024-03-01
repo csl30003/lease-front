@@ -70,24 +70,6 @@
 
             <!-- 订单信息 -->
             <view class="order-msg">
-                <!-- <view class="msg-item">
-                    <view class="item">
-                        <text class="item-tit">
-                            订单编号：
-                        </text>
-                        <text class="item-txt">
-                            {{ orderNumber }}
-                        </text>
-                    </view>
-                    <view class="item">
-                        <text class="item-tit">
-                            下单时间：
-                        </text>
-                        <text class="item-txt">
-                            {{ createTime }}
-                        </text>
-                    </view>
-                </view> -->
                 <view class="msg-item">
                     <view class="item">
                         <text class="item-tit">
@@ -105,14 +87,6 @@
                             {{ deliveryValue }}
                         </text>
                     </view>
-                    <!-- <view class="item">
-                        <text v-if="!!remarks" class="item-tit">
-                            订单备注：
-                        </text>
-                        <text class="item-txt remarks">
-                            {{ remarks }}
-                        </text>
-                    </view> -->
                 </view>
             </view>
 
@@ -131,32 +105,6 @@
                             </text>
                         </view>
                     </view>
-                    <!-- <view class="item">
-                        <view class="item-tit">
-                            运费：
-                        </view>
-                        <view class="item-txt price">
-                            <text class="symbol">
-                                ￥
-                            </text>
-                            <text class="big-num">
-                                {{ transfee }}
-                            </text>
-                        </view>
-                    </view> -->
-                    <!-- <view class="item">
-                        <view class="item-tit">
-                            优惠券：
-                        </view>
-                        <view class="item-txt price">
-                            <text class="symbol">
-                                -￥
-                            </text>
-                            <text class="big-num">
-                                {{ reduceAmount }}
-                            </text>
-                        </view>
-                    </view> -->
                     <view class="item payment">
                         <view class="item-txt price">
                             实付款：

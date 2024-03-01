@@ -33,7 +33,14 @@ const getProductAPI = (id) => {
     method: "get"
   });
 };
+const getCarouselListAPI = () => {
+  return utils_http.http({
+    url: "/product/carousel",
+    method: "get"
+  });
+};
 exports.addProductAPI = addProductAPI;
+exports.getCarouselListAPI = getCarouselListAPI;
 exports.getMyProductAPI = getMyProductAPI;
 exports.getProductAPI = getProductAPI;
 exports.getProductListAPI = getProductListAPI;

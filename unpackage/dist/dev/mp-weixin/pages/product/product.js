@@ -203,7 +203,7 @@ const _sfc_main = {
         b: common_vendor.t(name.value),
         c: !isCollection.value
       }, !isCollection.value ? {
-        d: common_assets._imports_0$4
+        d: common_assets._imports_0$5
       } : {}, {
         e: isCollection.value
       }, isCollection.value ? {
@@ -254,12 +254,12 @@ const _sfc_main = {
         F: common_assets._imports_3$1,
         G: common_vendor.o(decreaseQuantity),
         H: common_vendor.t(quantity.value),
-        I: common_assets._imports_4,
+        I: common_assets._imports_4$1,
         J: common_vendor.o(increaseQuantity),
         K: common_assets._imports_3$1,
         L: common_vendor.o(decreaseDays),
         M: common_vendor.t(days.value),
-        N: common_assets._imports_4,
+        N: common_assets._imports_4$1,
         O: common_vendor.o(increaseDays),
         P: common_vendor.o(closeSkuModal),
         Q: common_vendor.o(goToNextPage)

@@ -47,14 +47,14 @@ image.data-v-bac4a35d {
   width: 90%;
   margin: 0 auto;
   text-align: center;
-  background-color: #0ab906;
-  border: 1rpx solid #0ab906;
+  background-color: #007aff;
+  border: 1rpx solid #007aff;
   color: #fff;
   border-radius: 6rpx;
   font-size: 26rpx;
   padding: 8rpx;
   margin-top: 80rpx;
-  border: 1rpx solid #0ab906;
+  border: 1rpx solid #007aff;
   border-radius: 6rpx;
   font-size: 26rpx;
   padding: 8rpx;

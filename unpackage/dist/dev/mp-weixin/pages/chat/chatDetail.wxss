@@ -82,7 +82,7 @@ textarea.data-v-4382e910 {
   justify-content: center;
   width: 78rpx;
   height: 78rpx;
-  background: #4F7DF5;
+  background: #007aff;
   border-radius: 8rpx;
   overflow: hidden;
 }
@@ -130,7 +130,7 @@ textarea.data-v-4382e910 {
   margin-left: 25rpx;
   width: 128rpx;
   height: 75rpx;
-  background: #4F7DF5;
+  background: #007aff;
   border-radius: 8rpx;
   font-size: 28rpx;
   font-family: PingFang SC;

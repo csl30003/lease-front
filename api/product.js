@@ -37,3 +37,10 @@ export const getProductAPI = (id) => {
         method: 'get',
     })
 }
+
+export const getCarouselListAPI = () => {
+    return http({
+        url: '/product/carousel',
+        method: 'get',
+    })
+}

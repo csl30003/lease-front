@@ -130,7 +130,7 @@ const _sfc_main = {
       } : {}, {
         z: common_vendor.o(toOrderListPage1),
         A: common_vendor.o(toOrderListPage2),
-        B: common_assets._imports_0$1,
+        B: common_assets._imports_4,
         C: hisOrderCount.value.status2 > 0
       }, hisOrderCount.value.status2 > 0 ? {
         D: common_vendor.t(hisOrderCount.value.status2)
@@ -142,7 +142,7 @@ const _sfc_main = {
         H: common_vendor.t(hisOrderCount.value.status5)
       } : {}, {
         I: common_vendor.o(toOrderListPage2),
-        J: common_assets._imports_2,
+        J: common_assets._imports_5,
         K: hisOrderCount.value.status6 > 0
       }, hisOrderCount.value.status6 > 0 ? {
         L: common_vendor.t(hisOrderCount.value.status6)
@@ -155,23 +155,33 @@ const _sfc_main = {
       } : {}, {
         Q: common_vendor.o(toOrderListPage2),
         R: loginResult.value
-      }, loginResult.value ? {} : {}, {
-        S: common_vendor.o(myProduct),
-        T: loginResult.value
-      }, loginResult.value ? {} : {}, {
-        U: common_vendor.o(myDelistedProduct),
-        V: loginResult.value
-      }, loginResult.value ? {} : {}, {
-        W: common_vendor.o(myCollection),
+      }, loginResult.value ? {
+        S: common_assets._imports_6
+      } : {}, {
+        T: common_vendor.o(myProduct),
+        U: loginResult.value
+      }, loginResult.value ? {
+        V: common_assets._imports_7
+      } : {}, {
+        W: common_vendor.o(myDelistedProduct),
         X: loginResult.value
-      }, loginResult.value ? {} : {}, {
-        Y: common_vendor.o(toAddressList),
-        Z: loginResult.value
-      }, loginResult.value ? {} : {}, {
-        aa: common_vendor.o(toWallet),
-        ab: isAuthInfo.value
+      }, loginResult.value ? {
+        Y: common_assets._imports_8
+      } : {}, {
+        Z: common_vendor.o(myCollection),
+        aa: loginResult.value
+      }, loginResult.value ? {
+        ab: common_assets._imports_9
+      } : {}, {
+        ac: common_vendor.o(toAddressList),
+        ad: loginResult.value
+      }, loginResult.value ? {
+        ae: common_assets._imports_10
+      } : {}, {
+        af: common_vendor.o(toWallet),
+        ag: isAuthInfo.value
       }, isAuthInfo.value ? {
-        ac: common_vendor.o(logout)
+        ah: common_vendor.o(logout)
       } : {});
     };
   }

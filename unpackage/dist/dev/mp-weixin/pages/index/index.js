@@ -7,20 +7,7 @@ require("../../utils/http.js");
 const _sfc_main = {
   __name: "index",
   setup(__props) {
-    const indexImgs = common_vendor.ref([
-      {
-        main_image: "/static/images/product/1708606195478345800.png",
-        id: 1
-      },
-      {
-        main_image: "/static/images/product/1708606195478345800.png",
-        id: 2
-      },
-      {
-        main_image: "/static/images/product/1708606195478345800.png",
-        id: 3
-      }
-    ]);
+    const indexImgs = common_vendor.ref([]);
     const indicatorColor = common_vendor.ref("#d1e5fb");
     const indicatorActiveColor = common_vendor.ref("#007aff");
     const autoplay = common_vendor.ref(true);
@@ -31,9 +18,14 @@ const _sfc_main = {
     const current = common_vendor.ref(1);
     const pages = common_vendor.ref(0);
     common_vendor.onLoad(async () => {
+      await getCarouselList();
       await getCategoryList();
       await getProdList();
     });
+    const getCarouselList = async () => {
+      const res = await api_product.getCarouselListAPI();
+      indexImgs.value = res.data;
+    };
     const getCategoryList = async () => {
       const res = await api_category.getCategoryAPI(0);
       categoryList.value = res.data;
@@ -66,6 +58,12 @@ const _sfc_main = {
         url: "/pages/search/search"
       });
     };
+    const toProdPage = (e) => {
+      const prodId = e.currentTarget.dataset.prodid;
+      common_vendor.index.navigateTo({
+        url: `/pages/product/product?prodid=${prodId}`
+      });
+    };
     const toCategory = () => {
       common_vendor.index.navigateTo({
         url: "/pages/category/category"
@@ -85,7 +83,7 @@ const _sfc_main = {
           return {
             a: item.main_image,
             b: item.id,
-            c: common_vendor.o((...args) => _ctx.toProdPage && _ctx.toProdPage(...args), index),
+            c: common_vendor.o(toProdPage, index),
             d: index
           };
         }),
@@ -112,7 +110,7 @@ const _sfc_main = {
             b: common_vendor.t(prod.name),
             c: common_vendor.t(prod.price),
             d: prod.id,
-            e: common_vendor.o((...args) => _ctx.toProdPage && _ctx.toProdPage(...args), key),
+            e: common_vendor.o(toProdPage, key),
             f: key
           };
         })

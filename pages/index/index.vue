@@ -12,6 +12,7 @@
 			</view>
 		</view>
 
+        <!-- 轮播图 -->
 		<swiper :autoplay="autoplay" :indicator-color="indicatorColor" :interval="interval" :duration="duration"
 			:indicator-active-color="indicatorActiveColor + ' '" :circular="true" class="pic-swiper" indicator-dots
 			previous-margin="20rpx" next-margin="20rpx">
@@ -83,22 +84,9 @@
 import { ref } from 'vue'
 import { onLoad, onReachBottom } from '@dcloudio/uni-app'
 import { getCategoryAPI } from "@/api/category"
-import { getProductListAPI } from "@/api/product"
+import { getCarouselListAPI, getProductListAPI } from "@/api/product"
 
-const indexImgs = ref([
-	{
-		main_image: '/static/images/product/1708606195478345800.png',
-		id: 1
-	},
-	{
-		main_image: '/static/images/product/1708606195478345800.png',
-		id: 2
-	},
-	{
-		main_image: '/static/images/product/1708606195478345800.png',
-		id: 3
-	}
-])
+const indexImgs = ref([])
 const indicatorColor = ref('#d1e5fb')
 const indicatorActiveColor = ref('#007aff')
 const autoplay = ref(true)
@@ -112,9 +100,16 @@ const current = ref(1)
 const pages = ref(0)
 
 onLoad(async () => {
+	await getCarouselList()
 	await getCategoryList()
 	await getProdList()
 })
+
+const getCarouselList = async () => {
+	// 获取轮播图
+	const res = await getCarouselListAPI()
+	indexImgs.value = res.data
+}
 
 const getCategoryList = async () => {
 	// 获取分类列表
@@ -152,6 +147,13 @@ const getProdList = async () => {
 const toSearchPage = () => {
 	uni.navigateTo({
 		url: '/pages/search/search'
+	})
+}
+
+const toProdPage = (e) => {
+	const prodId = e.currentTarget.dataset.prodid
+	uni.navigateTo({
+		url: `/pages/product/product?prodid=${prodId}`
 	})
 }
 
